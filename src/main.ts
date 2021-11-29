@@ -10,4 +10,4 @@ if (environment.production) {
 
 platformBrowserDynamic()
   .bootstrapModule(ArreglaloModule)
-  .catch((err) => console.error(err));
+  .catch((err) => err);
