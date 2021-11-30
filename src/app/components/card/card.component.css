@@ -1,0 +1,32 @@
+.card {
+  @apply bg-secondary shadow-lg rounded-2xl;
+  padding: 5px 10px;
+  max-width: 350px;
+  min-width: 260px;
+  height: 150px;
+  left: 32px;
+  top: 435px;
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  @apply bg-secondary rounded-full;
+  object-fit: contain;
+  width: 75px;
+  height: 75px;
+  flex: 1;
+}
+
+.description {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  flex: 3;
+  text-align: center;
+  justify-content: space-evenly;
+}
+.user-data {
+  display: flex;
+  justify-content: space-around;
+}

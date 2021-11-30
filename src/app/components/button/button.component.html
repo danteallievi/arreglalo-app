@@ -1,0 +1,11 @@
+<button
+  class="button"
+  [ngClass]="{
+    'button-small': buttonSmall,
+    'bg-primary': buttonColor === 'primary',
+    'bg-secondary': buttonColor === 'secondary'
+  }"
+  (click)="buttonOnClick()"
+>
+  {{ buttonText }}
+</button>

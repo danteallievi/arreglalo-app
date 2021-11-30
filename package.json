@@ -6,9 +6,11 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "jest",
     "prepare": "husky install",
-    "lint": "npx eslint --ignore-path .gitignore ."
+    "lint": "npx eslint --ignore-path .gitignore .",
+    "test": "jest",
+    "test-watch": "jest --runInBand --watchAll",
+    "test-cov": "jest --collect-coverage --watchAll"
   },
   "private": true,
   "dependencies": {
@@ -33,6 +35,7 @@
     "@angular-devkit/build-angular": "~13.0.3",
     "@angular/cli": "~13.0.3",
     "@angular/compiler-cli": "~13.0.0",
+    "@testing-library/angular": "^10.11.1",
     "@types/jasmine": "~3.10.0",
     "@types/node": "^12.11.1",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
