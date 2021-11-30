@@ -1,0 +1,23 @@
+<arreglalo-hamburger
+  [hamburgerIsOpen]="!isOpen"
+  (click)="toggleNavbar()"
+></arreglalo-hamburger>
+<div
+  class="navbar-mobile-modal"
+  [ngClass]="{ 'navbar-mobile-modal--hiden': isOpen }"
+>
+  <ul class="navbar-mobile-modal navbar-mobile-modal__list">
+    <li>
+      <a routerLink="/">Inicio</a>
+    </li>
+    <li>
+      <a routerLink="/about">Perfil</a>
+    </li>
+    <li>
+      <a routerLink="/contact">Profesionales</a>
+    </li>
+    <li class="navbar-mobile-modal__list--logout">
+      <a routerLink="/logout">Cerrar sesion</a>
+    </li>
+  </ul>
+</div>
