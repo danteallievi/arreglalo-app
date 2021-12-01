@@ -8,7 +8,6 @@ import { ButtonComponent } from "./components/button/button.component";
 import { CardComponent } from "./components/card/card.component";
 import { NavbarComponent } from "./components/navbar/navbar.component";
 import { HamburgerComponent } from "./components/navbar/hamburger/hamburger.component";
-import { ListComponent } from "./components/list/list.component";
 
 @NgModule({
   declarations: [
@@ -17,7 +16,6 @@ import { ListComponent } from "./components/list/list.component";
     CardComponent,
     NavbarComponent,
     HamburgerComponent,
-    ListComponent,
   ],
   imports: [BrowserModule, ArreglaloRoutingModule, HttpClientModule],
   providers: [],
