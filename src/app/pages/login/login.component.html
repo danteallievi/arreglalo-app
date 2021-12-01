@@ -1,0 +1,57 @@
+<div
+  class="container px-12 bg-quaternary min-h-screen flex flex-col items-center"
+>
+  <h1 class="text-5xl pt-10 text-center">Iniciar Sesión</h1>
+
+  <div class="userdata-container">
+    <p class="error-message wrong-data" *ngIf="errorMessage">Datos inválidos</p>
+
+    <form
+      class="w-full max-w-sm flex flex-col content-center"
+      [formGroup]="loginForm"
+      (ngSubmit)="onSubmit()"
+    >
+      <input
+        placeholder="Email"
+        type="email"
+        formControlName="email"
+        autocomplete="off"
+        autofocus
+      />
+      <span
+        for="email"
+        class="error-message text-danger"
+        *ngIf="
+          loginForm.controls['email'].dirty &&
+          loginForm.hasError('required', 'email')
+        "
+      >
+        *Campo obligatorio</span
+      >
+      <input
+        class="mt-8"
+        autocomplete="off"
+        placeholder="Contraseña"
+        type="password"
+        formControlName="password"
+      />
+      <span
+        class="error-message text-danger"
+        *ngIf="
+          loginForm.controls['password'].dirty &&
+          loginForm.hasError('required', 'password')
+        "
+      >
+        *Campo obligatorio</span
+      >
+
+      <button
+        class="button-submit"
+        type="submit"
+        [disabled]="loginForm.invalid"
+      >
+        Ingresar
+      </button>
+    </form>
+  </div>
+</div>

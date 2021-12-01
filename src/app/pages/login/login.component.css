@@ -1,0 +1,59 @@
+.userdata-container {
+  @apply pt-24 flex flex-col content-center justify-between;
+  min-height: 50vh;
+  position: relative;
+}
+
+.button-submit {
+  @apply shadow-lg bg-primary mx-auto mt-8;
+  color: #fff;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 18px;
+  width: 280px;
+  height: 55px;
+  line-height: 21px;
+  text-align: center;
+  width: 180px;
+  height: 55px;
+  transition: all 0.25s ease-out;
+}
+
+.button-submit:disabled {
+  cursor: default;
+  background-color: #ccc;
+}
+
+.button-submit:focus {
+  outline: none;
+}
+
+.wrong-data {
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  position: absolute;
+}
+
+.wrong-input {
+  top: 0%;
+  transform: translate(0%, 0%);
+  position: absolute;
+}
+
+.error-message {
+  color: #e00000;
+  font-weight: bold;
+}
+
+.text-danger {
+  margin-left: 1rem;
+}
+
+input {
+  position: relative;
+}
+
+input:focus {
+  outline: none;
+}

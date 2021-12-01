@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { HttpClientModule } from "@angular/common/http";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { ArreglaloRoutingModule } from "./arreglalo-routing.module";
 import { AppComponent } from "./arreglalo.component";
@@ -11,6 +12,7 @@ import { HamburgerComponent } from "./components/navbar/hamburger/hamburger.comp
 import { LandingComponent } from "./pages/landing/landing.component";
 import { RegisterComponent } from "./pages/register/register.component";
 import { ListComponent } from "./components/list/list.component";
+import { LoginComponent } from "./pages/login/login.component";
 
 @NgModule({
   declarations: [
@@ -22,8 +24,15 @@ import { ListComponent } from "./components/list/list.component";
     LandingComponent,
     RegisterComponent,
     ListComponent,
+    LoginComponent,
   ],
-  imports: [BrowserModule, ArreglaloRoutingModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    ArreglaloRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
   exports: [],
   providers: [],
   bootstrap: [AppComponent],
