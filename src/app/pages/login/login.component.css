@@ -1,0 +1,4 @@
+.buttons-container {
+  @apply pt-24 flex flex-col content-center justify-between;
+  min-height: 50vh;
+}
