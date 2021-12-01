@@ -7,13 +7,10 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
-      fontFamily: {
-        sans: ["Roboto", "Helvetica", "Arial", "sans-serif"],
-      },
       colors: {
         primary: "#35615A",
-        secondary: "#D8810D",
         tertiary: "#EA9D13",
+        secondary: "#D8810D",
         quaternary: "#F4E4B0",
       },
     },
