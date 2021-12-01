@@ -1,0 +1,36 @@
+<div
+  class="container px-12 bg-quaternary min-h-screen flex flex-col items-center"
+>
+  <h1 class="text-5xl pt-10 text-center">Iniciar Sesión</h1>
+
+  <div class="userdata-container">
+    <form
+      class="w-full max-w-sm flex flex-col content-center"
+      [formGroup]="loginForm"
+      (ngSubmit)="onSubmit()"
+    >
+      <input
+        placeholder="Email"
+        type="email"
+        formControlName="email"
+        autocomplete="off"
+        autofocus
+      />
+      <input
+        class="mt-8"
+        autocomplete="off"
+        placeholder="Contraseña"
+        type="password"
+        formControlName="password"
+      />
+
+      <button
+        class="button-submit"
+        type="submit"
+        [disabled]="loginForm.invalid"
+      >
+        Ingresar
+      </button>
+    </form>
+  </div>
+</div>

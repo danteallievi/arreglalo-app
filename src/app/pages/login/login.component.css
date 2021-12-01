@@ -1,0 +1,22 @@
+.userdata-container {
+  @apply pt-24 flex flex-col content-center justify-between;
+  min-height: 50vh;
+}
+
+.button-submit {
+  @apply shadow-lg bg-primary mx-auto mt-8;
+  color: #fff;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 18px;
+  width: 280px;
+  height: 55px;
+  line-height: 21px;
+  text-align: center;
+  width: 180px;
+  height: 55px;
+}
+
+input:focus {
+  outline: none;
+}
