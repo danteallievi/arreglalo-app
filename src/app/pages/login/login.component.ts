@@ -11,7 +11,7 @@ import { StoreService } from "src/app/core/services/store/store.service";
 })
 export class LoginComponent implements OnInit {
   loginForm: any | FormGroup;
-
+  errorMessage = false;
   user$ = this.storeService.user$;
 
   constructor(
@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
       email: ["", Validators.required],
       password: ["", Validators.required],
     });
+    this.checkFormChanges();
   }
 
   onSubmit() {
@@ -34,6 +35,19 @@ export class LoginComponent implements OnInit {
         localStorage.setItem("user", JSON.stringify(data));
         this.router.navigate(["/list"]);
       },
+      error: () => {
+        this.errorMessage = true;
+      },
+    });
+  }
+
+  checkFormChanges() {
+    this.loginForm.controls.email.valueChanges.subscribe(() => {
+      this.errorMessage = false;
+    });
+
+    this.loginForm.controls.password.valueChanges.subscribe(() => {
+      this.errorMessage = false;
     });
   }
 }
