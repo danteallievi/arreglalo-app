@@ -8,7 +8,9 @@ import { ButtonComponent } from "./components/button/button.component";
 import { CardComponent } from "./components/card/card.component";
 import { NavbarComponent } from "./components/navbar/navbar.component";
 import { HamburgerComponent } from "./components/navbar/hamburger/hamburger.component";
-import { LoginComponent } from "./pages/login/login.component";
+import { LandingComponent } from "./pages/landing/landing.component";
+import { RegisterComponent } from "./pages/register/register.component";
+import { ListComponent } from "./components/list/list.component";
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { LoginComponent } from "./pages/login/login.component";
     CardComponent,
     NavbarComponent,
     HamburgerComponent,
-    LoginComponent,
+    LandingComponent,
+    RegisterComponent,
+    ListComponent,
   ],
   imports: [BrowserModule, ArreglaloRoutingModule, HttpClientModule],
   exports: [],

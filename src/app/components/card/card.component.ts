@@ -10,6 +10,7 @@ export class CardComponent implements OnInit {
   @Input() profession!: string;
   @Input() age!: string;
   @Input() calification!: string;
+  @Input() image!: string;
 
   ngOnInit(): void {}
 }
