@@ -1,10 +1,10 @@
-<div class="container p-3 bg-quaternary min-h-full">
+<arreglalo-navbar></arreglalo-navbar>
+<div class="bg-quaternary content">
   <h1 class="text-4xl py-8 text-center">Profesionales</h1>
-  <div
-    class="mb-5"
-    *ngFor="let professional of storeService.professionalsSubject$ | async"
-  >
+  <div class="cards-container">
     <arreglalo-card
+      *ngFor="let professional of storeService.professionalsSubject$ | async"
+      class="cards-responsive"
       username="{{ professional.name }}"
       profession="{{ professional.skill }}"
       image="{{ professional.avatar }}"
