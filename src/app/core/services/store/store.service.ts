@@ -29,7 +29,6 @@ export class StoreService {
 
   private loginUser(user: IUser) {
     const { email, password } = user;
-
     return this.userService.loginUserService(email, password);
   }
 }
