@@ -1,7 +1,10 @@
-<arreglalo-hamburger
-  [hamburgerIsOpen]="!isOpen"
-  (click)="toggleNavbar()"
-></arreglalo-hamburger>
+<div class="navbar">
+  <arreglalo-hamburger
+    [hamburgerIsOpen]="!isOpen"
+    (click)="toggleNavbar()"
+  ></arreglalo-hamburger>
+</div>
+
 <div
   class="navbar-mobile-modal"
   [ngClass]="{ 'navbar-mobile-modal--hiden': isOpen }"

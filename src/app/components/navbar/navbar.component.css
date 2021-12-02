@@ -1,11 +1,24 @@
-.navbar-mobile-modal {
-  background-color: red;
-  position: absolute;
+.navbar {
+  height: 10vh;
+  position: fixed;
+  pointer-events: none;
+  padding: 0;
   top: 0;
-  left: 0;
+  z-index: 1;
+  width: 100vw;
+  height: 10vh;
+  background-color: #494949;
+  display: flex;
+  padding-left: 2rem;
+  align-items: center;
+}
+
+.navbar-mobile-modal {
+  background-color: #000000;
+  color: #ffffff;
+  position: fixed;
   width: 70vw;
   height: 100vh;
-  z-index: 1;
   font-size: 1.3rem;
 }
 
@@ -14,7 +27,7 @@
 }
 
 .navbar-mobile-modal .navbar-mobile-modal__list {
-  padding: 20vh 10vw;
+  padding: 5vh 0 10vh 8vh;
   height: 100%;
   display: flex;
   flex-direction: column;

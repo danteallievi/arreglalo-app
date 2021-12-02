@@ -9,7 +9,7 @@
     <form
       class="w-full max-w-sm flex flex-col content-center"
       [formGroup]="loginForm"
-      (ngSubmit)="onSubmit()"
+      (ngSubmit)="onSubmit(loginForm)"
     >
       <input
         placeholder="Email"

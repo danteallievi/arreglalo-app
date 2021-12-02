@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { FormGroup, FormBuilder, Validators, NgForm } from "@angular/forms";
 import { Router } from "@angular/router";
 
 import { StoreService } from "src/app/core/services/store/store.service";
@@ -28,12 +28,13 @@ export class LoginComponent implements OnInit {
     this.checkFormChanges();
   }
 
-  onSubmit() {
+  onSubmit(form: NgForm) {
     this.user$.next(this.loginForm.value);
     this.storeService.userSubject$.subscribe({
       next: (data) => {
         localStorage.setItem("user", JSON.stringify(data));
         this.router.navigate(["/list"]);
+        form.reset();
       },
       error: () => {
         this.errorMessage = true;
