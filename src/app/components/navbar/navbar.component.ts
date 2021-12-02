@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "arreglalo-navbar",
@@ -8,7 +9,14 @@ import { Component } from "@angular/core";
 export class NavbarComponent {
   isOpen: boolean = true;
 
+  constructor(private router: Router) {}
+
   toggleNavbar() {
     this.isOpen = !this.isOpen;
+  }
+
+  logOutUser() {
+    localStorage.removeItem("user");
+    this.router.navigate(["/landing"]);
   }
 }
