@@ -14,13 +14,15 @@
         formControlName="email"
         autocomplete="nope"
         autofocus
+        email="true"
       />
       <span
         for="email"
         class="error-message text-danger"
         *ngIf="
           professionalForm.controls['email'].dirty &&
-          professionalForm.hasError('required', 'email')
+          professionalForm.hasError('required', 'email') &&
+          professionalForm.ValidationErrors['email'].required
         "
       >
         *Campo obligatorio</span
@@ -38,23 +40,6 @@
         *ngIf="
           professionalForm.controls['password'].dirty &&
           professionalForm.hasError('required', 'password')
-        "
-      >
-        *Campo obligatorio</span
-      >
-
-      <input
-        class="mt-3"
-        autocomplete="nope"
-        placeholder="Repetir contraseña"
-        type="password"
-        formControlName="checkpassword"
-      />
-      <span
-        class="error-message text-danger"
-        *ngIf="
-          professionalForm.controls['checkpassword'].dirty &&
-          professionalForm.hasError('required', 'checkpassword')
         "
       >
         *Campo obligatorio</span
@@ -125,6 +110,23 @@
         *ngIf="
           professionalForm.controls['dateOfBirth'].dirty &&
           professionalForm.hasError('required', 'dateOfBirth')
+        "
+      >
+        *Campo obligatorio</span
+      >
+
+      <input
+        class="mt-3"
+        placeholder="Numero de documento"
+        autocomplete="nope"
+        type="number"
+        formControlName="DNINumber"
+      />
+      <span
+        class="error-message text-danger"
+        *ngIf="
+          professionalForm.controls['DNINumber'].dirty &&
+          professionalForm.hasError('required', 'DNINumber')
         "
       >
         *Campo obligatorio</span

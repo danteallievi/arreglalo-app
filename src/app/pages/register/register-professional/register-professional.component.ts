@@ -21,24 +21,38 @@ export class RegisterProfessionalComponent implements OnInit {
     this.professionalForm = this.formBuilder.group({
       email: ["", Validators.required],
       password: ["", Validators.required],
-      checkpassword: ["", Validators.required],
       name: ["", Validators.required],
       surname: ["", Validators.required],
       phone: ["", Validators.required],
       dateOfBirth: ["", Validators.required],
+      DNINumber: ["", Validators.required],
       street: ["", Validators.required],
       city: ["", Validators.required],
       zip: ["", Validators.required],
     });
-    // this.checkFormChanges();
   }
 
   onSubmit(form: NgForm) {
-    this.publicMethods.loginUser(form.value).subscribe({
-      next: () => {
-        this.router.navigate(["/login"]);
-        form.reset();
+    const { street, city, zip, DNINumber, ...allRestInputs } = form.value;
+    const DNI = DNINumber.toString();
+    const newProfessional = {
+      ...allRestInputs,
+      DNI,
+      address: {
+        street,
+        city,
+        zip,
       },
-    });
+      skills: ["asd"],
+    };
+
+    if (form.valid) {
+      this.publicMethods.registerProfessional(newProfessional).subscribe({
+        next: () => {
+          this.router.navigate(["/login"]);
+          form.reset();
+        },
+      });
+    }
   }
 }
