@@ -1,8 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder, Validators, NgForm } from "@angular/forms";
 import { Router } from "@angular/router";
+import { IUser } from "src/app/core/models/User";
 
-import { StoreService } from "src/app/core/services/store/store.service";
+import { PublicMethodsService } from "src/app/core/services/methods/public-methods.service";
 
 @Component({
   selector: "arreglalo-login",
@@ -12,10 +13,9 @@ import { StoreService } from "src/app/core/services/store/store.service";
 export class LoginComponent implements OnInit {
   loginForm: any | FormGroup;
   errorMessage = false;
-  user$ = this.storeService.user$;
 
   constructor(
-    public storeService: StoreService,
+    private publicMethods: PublicMethodsService,
     private formBuilder: FormBuilder,
     private router: Router
   ) {}
@@ -29,9 +29,8 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    this.user$.next(this.loginForm.value);
-    this.storeService.userSubject$.subscribe({
-      next: (data) => {
+    this.publicMethods.loginUser(form.value).subscribe({
+      next: (data: IUser) => {
         localStorage.setItem("user", JSON.stringify(data));
         this.router.navigate(["/list"]);
         form.reset();
