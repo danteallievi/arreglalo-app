@@ -1,0 +1,194 @@
+<div class="px-12 bg-quaternary min-h-screen flex flex-col items-center">
+  <h1 class="text-5xl pt-10 text-center">Registro profesional</h1>
+
+  <div class="userdata-container py-8">
+    <form
+      class="w-full max-w-sm flex flex-col content-center mt-10"
+      [formGroup]="professionalForm"
+      (ngSubmit)="onSubmit(professionalForm)"
+      autocomplete="nope"
+    >
+      <input
+        placeholder="Email"
+        type="email"
+        formControlName="email"
+        autocomplete="nope"
+        autofocus
+        email="true"
+      />
+      <span
+        for="email"
+        class="error-message text-danger"
+        *ngIf="
+          professionalForm.controls['email'].dirty &&
+          professionalForm.hasError('required', 'email') &&
+          professionalForm.ValidationErrors['email'].required
+        "
+      >
+        *Campo obligatorio</span
+      >
+
+      <input
+        class="mt-3"
+        autocomplete="nope"
+        placeholder="Contraseña"
+        type="password"
+        formControlName="password"
+      />
+      <span
+        class="error-message text-danger"
+        *ngIf="
+          professionalForm.controls['password'].dirty &&
+          professionalForm.hasError('required', 'password')
+        "
+      >
+        *Campo obligatorio</span
+      >
+
+      <input
+        class="mt-3"
+        autocomplete="nope"
+        placeholder="Nombre"
+        type="text"
+        formControlName="name"
+      />
+      <span
+        class="error-message text-danger"
+        *ngIf="
+          professionalForm.controls['name'].dirty &&
+          professionalForm.hasError('required', 'name')
+        "
+      >
+        *Campo obligatorio</span
+      >
+
+      <input
+        class="mt-3"
+        autocomplete="nope"
+        placeholder="Apellido"
+        type="text"
+        formControlName="surname"
+      />
+      <span
+        class="error-message text-danger"
+        *ngIf="
+          professionalForm.controls['surname'].dirty &&
+          professionalForm.hasError('required', 'surname')
+        "
+      >
+        *Campo obligatorio</span
+      >
+
+      <input
+        class="mt-3"
+        autocomplete="nope"
+        placeholder="Teléfono"
+        type="text"
+        formControlName="phone"
+      />
+      <span
+        class="error-message text-danger"
+        *ngIf="
+          professionalForm.controls['phone'].dirty &&
+          professionalForm.hasError('required', 'phone')
+        "
+      >
+        *Campo obligatorio</span
+      >
+
+      <input
+        class="mt-3"
+        placeholder="Fecha de nacimiento"
+        autocomplete="nope"
+        type="text"
+        onfocus="(this.type='date')"
+        onblur="(this.type='text')"
+        formControlName="dateOfBirth"
+      />
+      <span
+        class="error-message text-danger"
+        *ngIf="
+          professionalForm.controls['dateOfBirth'].dirty &&
+          professionalForm.hasError('required', 'dateOfBirth')
+        "
+      >
+        *Campo obligatorio</span
+      >
+
+      <input
+        class="mt-3"
+        placeholder="Numero de documento"
+        autocomplete="nope"
+        type="number"
+        formControlName="DNINumber"
+      />
+      <span
+        class="error-message text-danger"
+        *ngIf="
+          professionalForm.controls['DNINumber'].dirty &&
+          professionalForm.hasError('required', 'DNINumber')
+        "
+      >
+        *Campo obligatorio</span
+      >
+
+      <input
+        class="mt-3"
+        placeholder="Ciudad"
+        autocomplete="nope"
+        type="text"
+        formControlName="city"
+      />
+      <span
+        class="error-message text-danger"
+        *ngIf="
+          professionalForm.controls['city'].dirty &&
+          professionalForm.hasError('required', 'city')
+        "
+      >
+        *Campo obligatorio</span
+      >
+
+      <input
+        class="mt-3"
+        placeholder="Dirección"
+        autocomplete="nope"
+        type="text"
+        formControlName="street"
+      />
+      <span
+        class="error-message text-danger"
+        *ngIf="
+          professionalForm.controls['street'].dirty &&
+          professionalForm.hasError('required', 'street')
+        "
+      >
+        *Campo obligatorio</span
+      >
+
+      <input
+        class="mt-3"
+        placeholder="Código postal"
+        autocomplete="nope"
+        type="text"
+        formControlName="zip"
+      />
+      <span
+        class="error-message text-danger"
+        *ngIf="
+          professionalForm.controls['zip'].dirty &&
+          professionalForm.hasError('required', 'zip')
+        "
+      >
+        *Campo obligatorio</span
+      >
+      <button
+        class="button-submit"
+        type="submit"
+        [disabled]="professionalForm.invalid"
+      >
+        Registrate
+      </button>
+    </form>
+  </div>
+</div>

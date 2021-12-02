@@ -14,6 +14,7 @@ import { RegisterComponent } from "./pages/register/register.component";
 import { ListComponent } from "./components/list/list.component";
 import { LoginComponent } from "./pages/login/login.component";
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { RegisterProfessionalComponent } from './pages/register/register-professional/register-professional.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     ListComponent,
     LoginComponent,
     PageNotFoundComponent,
+    RegisterProfessionalComponent,
   ],
   imports: [
     BrowserModule,
