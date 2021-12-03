@@ -40,7 +40,7 @@ describe("Given the HamburgerComponent", () => {
       const logOutListItem = fixture.debugElement.nativeElement.querySelector(
         ".navbar-mobile-modal__list--logout"
       );
-      jest.spyOn(component, "logOutUser");
+      spyOn(component, "logOutUser");
 
       logOutListItem.click();
 
@@ -52,20 +52,14 @@ describe("Given the HamburgerComponent", () => {
       expect(component.isOpen).toBe(true);
     });
 
-    it("Should have a method isOpen", () => {
-      expect(component.toggleNavbar).toBeDefined();
-      expect(component.isOpen).toBe(true);
-    });
-
     it("Should call the toggle navbar function when the hamburger is clicked", () => {
       const hamburger =
         fixture.debugElement.nativeElement.querySelector("#hamburger");
-      jest.spyOn(component, "toggleNavbar");
+      spyOn(component, "toggleNavbar");
 
       hamburger.click();
 
       expect(component.toggleNavbar).toHaveBeenCalledTimes(1);
-      expect(component.isOpen).toBe(false);
     });
   });
 });
