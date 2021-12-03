@@ -13,8 +13,10 @@ import { LandingComponent } from "./pages/landing/landing.component";
 import { RegisterComponent } from "./pages/register/register.component";
 import { ListComponent } from "./components/list/list.component";
 import { LoginComponent } from "./pages/login/login.component";
-import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-import { RegisterProfessionalComponent } from './pages/register/register-professional/register-professional.component';
+import { PageNotFoundComponent } from "./components/page-not-found/page-not-found.component";
+import { RegisterProfessionalComponent } from "./pages/register/register-professional/register-professional.component";
+import { ProfileComponent } from "./pages/profile/profile.component";
+import { DetailComponent } from './pages/detail/detail.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { RegisterProfessionalComponent } from './pages/register/register-profess
     LoginComponent,
     PageNotFoundComponent,
     RegisterProfessionalComponent,
+    ProfileComponent,
+    DetailComponent,
   ],
   imports: [
     BrowserModule,
