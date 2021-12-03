@@ -11,9 +11,18 @@ export class StoreService {
     switchMap(() => this.printProfessional())
   );
 
-  public constructor(private arreglaloService: ArreglaloService) {}
+  public currentProfessional$ = new BehaviorSubject<{}>({});
+  public currentProfessionalSubject$ = this.currentProfessional$.pipe(
+    switchMap(() => this.printCurrentProfessional())
+  );
+
+  private constructor(private arreglaloService: ArreglaloService) {}
 
   private printProfessional() {
     return this.arreglaloService.getProfessionals();
+  }
+
+  private printCurrentProfessional() {
+    return this.arreglaloService.getCurrentProfessional();
   }
 }
