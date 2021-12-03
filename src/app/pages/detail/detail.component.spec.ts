@@ -46,8 +46,8 @@ describe("DetailComponent", () => {
     const expectedText = "Borrar perfil";
     const compiled = fixture.debugElement.nativeElement;
 
-    const [, firstButton] = compiled.querySelectorAll("button");
-    const buttonTitle = firstButton.textContent;
+    const [, secondButton] = compiled.querySelectorAll("button");
+    const buttonTitle = secondButton.textContent;
 
     expect(buttonTitle).toContain(expectedText);
   });
