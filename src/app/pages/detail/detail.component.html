@@ -1,34 +1,41 @@
 <arreglalo-navbar></arreglalo-navbar>
 <div class="content">
-  <h1 class="text-4xl py-8 text-center">Developer</h1>
+  <h1 class="text-4xl text-center mt-3">{{ myProf?.skills }}</h1>
 
   <div class="main-content">
     <div class="user-detail">
       <img
-        class="avatar"
+        class="avatar mr-4"
         width="75"
         height="75"
-        src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"
-        alt=""
+        src="{{ myProf?.avatar }}"
+        alt="{{ myProf?.name }}"
       />
-      <h2>Mario luis marta</h2>
+      <h2>{{ myProf?.name }} {{ myProf?.surname }}</h2>
     </div>
 
-    <div class="user-info">
-      <p>Email</p>
-      <p>Contacto</p>
-      <p>Direccion</p>
-      <p>Skills</p>
+    <div class="user-info ml-4">
+      <p>Email: {{ myProf?.email }}</p>
+      <p>DNI: {{ myProf?.DNI }}</p>
+      <p>Telefono: {{ myProf?.phone }}</p>
+      <p>Habilidades:</p>
+      <p>Dirección</p>
+      <p>Ciudad: {{ myProf?.address.city }}</p>
+      <p>Calle: {{ myProf?.address.street }}</p>
+      <p>Código postal: {{ myProf?.address.zip }}</p>
+      <p>Zip code: {{ myProf?.address.zip }}</p>
+    </div>
 
-      <div class="button-edit">
-        <arreglalo-button
-          buttonColor="primary"
-          buttonText="Editar"
-          buttonSmall="small"
-        ></arreglalo-button>
+    <div class="button-edit">
+      <arreglalo-button
+        buttonColor="primary"
+        buttonText="Editar"
+        buttonSmall="small"
+      ></arreglalo-button>
 
-        <button class="button-delete">Borrar perfil</button>
-      </div>
+      <button class="button-delete" (click)="deleteProfile()">
+        Borrar perfil
+      </button>
     </div>
   </div>
 </div>
