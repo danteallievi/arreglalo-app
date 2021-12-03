@@ -3,7 +3,7 @@ import { CardComponent } from "./card.component";
 
 describe("Given the button component", () => {
   describe("When it receives a username", () => {
-    test("Then it should render the button with the given username", () => {
+    it("Then it should render the button with the given username", () => {
       const fixture = TestBed.createComponent(CardComponent);
       const component = fixture.componentInstance;
       component.username = "Username";
@@ -17,7 +17,7 @@ describe("Given the button component", () => {
   });
 
   describe("When it receives a profession", () => {
-    test("Then it should render the button with the given profession", () => {
+    it("Then it should render the button with the given profession", () => {
       const fixture = TestBed.createComponent(CardComponent);
       const component = fixture.componentInstance;
       component.profession = "Profession";
@@ -31,7 +31,7 @@ describe("Given the button component", () => {
   });
 
   describe("When it receives a age", () => {
-    test("Then it should render the button with the given age", () => {
+    it("Then it should render the button with the given age", () => {
       const fixture = TestBed.createComponent(CardComponent);
       const component = fixture.componentInstance;
       component.age = "Age";
@@ -45,7 +45,7 @@ describe("Given the button component", () => {
   });
 
   describe("When it receives a calification", () => {
-    test("Then it should render the button with the given calification", () => {
+    it("Then it should render the button with the given calification", () => {
       const fixture = TestBed.createComponent(CardComponent);
       const component = fixture.componentInstance;
       component.calification = "Calification";

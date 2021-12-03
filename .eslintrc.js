@@ -6,7 +6,12 @@ module.exports = {
   },
   extends: ["airbnb-base", "airbnb-typescript/base", "prettier"],
   parser: "@typescript-eslint/parser",
-  ignorePatterns: ["node_modules/", "/.eslintrc.js", "/src/polyfills.ts"],
+  ignorePatterns: [
+    "node_modules/",
+    "/.eslintrc.js",
+    "/src/polyfills.ts",
+    "/karma.conf.js",
+  ],
   parserOptions: {
     project: "./tsconfig.json",
     ecmaVersion: 13,
