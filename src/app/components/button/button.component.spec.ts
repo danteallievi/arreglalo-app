@@ -35,14 +35,6 @@ describe("Given the HamburgerComponent", () => {
       expect(component.buttonClick.emit).toHaveBeenCalledTimes(1);
     });
 
-    it("Should raise a event when its clicked", () => {
-      const button = fixture.debugElement.nativeElement.querySelector("button");
-      spyOn(component.buttonClick, "emit");
-
-      button.click();
-      expect(component.buttonClick.emit).toHaveBeenCalledTimes(1);
-    });
-
     it('Should have a primary color if it receives "primary" on buttonColor property', () => {
       const button = fixture.debugElement.nativeElement.querySelector("button");
       const expectedClass = "bg-primary";
