@@ -22,4 +22,8 @@ export class PublicMethodsService {
   public registerProfessional(professional: IProfessional) {
     return this.arreglaloService.createProfessional(professional);
   }
+
+  public deleteProfessionalProfile() {
+    return this.arreglaloService.deleteProfessional();
+  }
 }

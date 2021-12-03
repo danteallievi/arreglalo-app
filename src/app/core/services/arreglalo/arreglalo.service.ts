@@ -2,18 +2,30 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { IProfessional } from "../../models/Professional";
+import { LocalUser } from "../../models/User";
+import { AuthService } from "../auth/auth.service";
 
 @Injectable({
   providedIn: "root",
 })
 export class ArreglaloService {
+  userInfo?: LocalUser;
+  userToken?: string;
   apiUrl: string = "https://proyecto-final-dante-back.herokuapp.com/";
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private userData: AuthService) {}
 
   getProfessionals(): Observable<any> {
+    this.userToken = this.userData.getUserToken();
     return this.http.get(`${this.apiUrl}professional`, {
-      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      headers: { Authorization: `Bearer ${this.userToken}` },
+    });
+  }
+
+  getCurrentProfessional(): any {
+    this.userInfo = this.userData.getUserData();
+    return this.http.get(`${this.apiUrl}professional/${this.userInfo?.id}`, {
+      headers: { Authorization: `Bearer ${this.userToken}` },
     });
   }
 
@@ -22,5 +34,12 @@ export class ArreglaloService {
       `${this.apiUrl}user/professional/register`,
       professional
     );
+  }
+
+  deleteProfessional(): Observable<any> {
+    this.userToken = this.userData.getUserToken();
+    return this.http.delete(`${this.apiUrl}professional/delete`, {
+      headers: { Authorization: `Bearer ${this.userToken}` },
+    });
   }
 }
