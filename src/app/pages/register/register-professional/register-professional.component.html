@@ -21,8 +21,7 @@
         class="error-message text-danger"
         *ngIf="
           professionalForm.controls['email'].dirty &&
-          professionalForm.hasError('required', 'email') &&
-          professionalForm.ValidationErrors['email'].required
+          professionalForm.hasError('required', 'email')
         "
       >
         *Campo obligatorio</span

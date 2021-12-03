@@ -1,11 +1,10 @@
 .content {
-  @apply px-3 bg-quaternary;
+  @apply px-5 bg-quaternary;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  margin-top: 1vh;
-  min-height: 99vh;
+  margin-top: 10vh;
+  min-height: 90vh;
 }
 
 .main-content {

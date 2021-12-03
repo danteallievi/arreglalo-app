@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { Router } from "@angular/router";
+import { AuthService } from "src/app/core/services/auth/auth.service";
 
 @Component({
   selector: "arreglalo-navbar",
@@ -9,14 +9,13 @@ import { Router } from "@angular/router";
 export class NavbarComponent {
   isOpen: boolean = true;
 
-  constructor(private router: Router) {}
+  constructor(public authService: AuthService) {}
 
   toggleNavbar() {
     this.isOpen = !this.isOpen;
   }
 
   logOutUser() {
-    localStorage.removeItem("user");
-    this.router.navigate(["/landing"]);
+    this.authService.removeUserToken();
   }
 }
