@@ -6,8 +6,10 @@
       *ngFor="let professional of storeService.professionalsSubject$ | async"
       class="cards-responsive"
       username="{{ professional.name }}"
-      profession="{{ professional.skill }}"
+      profession="{{ professional.skills }}"
       image="{{ professional.avatar }}"
+      age="{{ calculateUserAge(professional.dateOfBirth) }}"
+      calification="{{ professional.rate }}"
     >
     </arreglalo-card>
   </div>
