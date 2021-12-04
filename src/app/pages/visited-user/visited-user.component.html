@@ -1,0 +1,14 @@
+<ng-container
+  *ngIf="isVisitedProfile; then visitedProfile; else localUserProfile"
+>
+</ng-container>
+
+<ng-template #visitedProfile>
+  <arreglalo-detail
+    [displayLocalUser]="false"
+    [userIdToDisplay]="userIdToDisplay"
+  ></arreglalo-detail>
+</ng-template>
+<ng-template #localUserProfile>
+  <arreglalo-detail></arreglalo-detail>
+</ng-template>
