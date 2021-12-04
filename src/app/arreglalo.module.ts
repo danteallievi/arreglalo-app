@@ -16,7 +16,7 @@ import { LoginComponent } from "./pages/login/login.component";
 import { PageNotFoundComponent } from "./components/page-not-found/page-not-found.component";
 import { RegisterProfessionalComponent } from "./pages/register/register-professional/register-professional.component";
 import { ProfileComponent } from "./pages/profile/profile.component";
-import { DetailComponent } from './pages/detail/detail.component';
+import { DetailComponent } from "./pages/detail/detail.component";
 
 @NgModule({
   declarations: [

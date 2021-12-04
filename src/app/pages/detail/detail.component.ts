@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { FormGroup, FormBuilder, Validators, NgForm } from "@angular/forms";
 
@@ -13,10 +13,16 @@ import { StoreService } from "src/app/core/services/store/store.service";
   styleUrls: ["./detail.component.css"],
 })
 export class DetailComponent implements OnInit {
-  currentProfessional$ = this.storeService.currentProfessional$;
+  @Input() displayLocalUser: boolean = true;
+  @Input() userIdToDisplay: string = "";
   updateProfessionalProfileForm?: FormGroup | any;
-  myProf!: any | IProfessional;
+
   isEditingProfile: boolean = false;
+
+  myProfessional?: any | IProfessional;
+
+  visitedProfessional$ = this.storeService.visitedProfessional$;
+  currentProfessional$ = this.storeService.currentProfessional$;
 
   constructor(
     public storeService: StoreService,
@@ -27,22 +33,31 @@ export class DetailComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.storeService.currentProfessionalSubject$.subscribe({
-      next: (data) => {
-        this.myProf = data;
-        this.updateProfessionalProfileForm = this.formBuilder.group({
-          skills: [this.myProf.skills, Validators.required],
-          email: [this.myProf.email, Validators.required],
-          name: [this.myProf.name, Validators.required],
-          surname: [this.myProf.surname, Validators.required],
-          phoneNumber: [this.myProf.phone, Validators.required],
-          DNINumber: [this.myProf.DNI, Validators.required],
-          street: [this.myProf.address.street, Validators.required],
-          city: [this.myProf.address.city, Validators.required],
-          zipNumber: [this.myProf.address.zip, Validators.required],
-        });
-      },
-    });
+    if (this.displayLocalUser) {
+      this.storeService.currentProfessionalSubject$.subscribe({
+        next: (data) => {
+          this.myProfessional = data;
+          this.updateProfessionalProfileForm = this.formBuilder.group({
+            skills: [this.myProfessional.skills, Validators.required],
+            email: [this.myProfessional.email, Validators.required],
+            name: [this.myProfessional.name, Validators.required],
+            surname: [this.myProfessional.surname, Validators.required],
+            phoneNumber: [this.myProfessional.phone, Validators.required],
+            DNINumber: [this.myProfessional.DNI, Validators.required],
+            street: [this.myProfessional.address.street, Validators.required],
+            city: [this.myProfessional.address.city, Validators.required],
+            zipNumber: [this.myProfessional.address.zip, Validators.required],
+          });
+        },
+      });
+    } else {
+      this.storeService.visitedProfessional$.next(this.userIdToDisplay);
+      this.storeService.visitedProfessionalSubject$.subscribe({
+        next: (data) => {
+          this.myProfessional = data;
+        },
+      });
+    }
   }
 
   deleteProfile() {
@@ -92,15 +107,15 @@ export class DetailComponent implements OnInit {
     document.documentElement.scrollTop = 0;
     if (form) {
       form.reset({
-        skills: [this.myProf?.skills],
-        email: [this.myProf?.email],
-        name: [this.myProf?.name],
-        surname: [this.myProf?.surname],
-        phoneNumber: [this.myProf?.phone],
-        DNINumber: [this.myProf?.DNI],
-        street: [this.myProf?.address.street],
-        city: [this.myProf?.address.city],
-        zipNumber: [this.myProf?.address.zip],
+        skills: [this.myProfessional?.skills],
+        email: [this.myProfessional?.email],
+        name: [this.myProfessional?.name],
+        surname: [this.myProfessional?.surname],
+        phoneNumber: [this.myProfessional?.phone],
+        DNINumber: [this.myProfessional?.DNI],
+        street: [this.myProfessional?.address.street],
+        city: [this.myProfessional?.address.city],
+        zipNumber: [this.myProfessional?.address.zip],
       });
     }
   }

@@ -29,6 +29,13 @@ export class ArreglaloService {
     });
   }
 
+  getVisitedProfessional(id: string): Observable<any> {
+    this.userInfo = this.userData.getUserData();
+    return this.http.get(`${this.apiUrl}professional/${id}`, {
+      headers: { Authorization: `Bearer ${this.userToken}` },
+    });
+  }
+
   createProfessional(professional: IProfessional): Observable<any> {
     return this.http.post(
       `${this.apiUrl}user/professional/register`,

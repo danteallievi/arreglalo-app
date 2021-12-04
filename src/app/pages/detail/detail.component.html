@@ -5,7 +5,7 @@
 
 <ng-template #detailProfile>
   <div class="content">
-    <h1 class="text-4xl text-center mt-3">{{ myProf?.skills }}</h1>
+    <h1 class="text-4xl text-center mt-3">{{ myProfessional?.skills }}</h1>
 
     <div class="main-content">
       <div class="user-detail">
@@ -13,25 +13,25 @@
           class="avatar mr-4"
           width="75"
           height="75"
-          src="{{ myProf?.avatar }}"
-          alt="{{ myProf?.name }}"
+          src="{{ myProfessional?.avatar }}"
+          alt="{{ myProfessional?.name }}"
         />
-        <h2>{{ myProf?.name }} {{ myProf?.surname }}</h2>
+        <h2>{{ myProfessional?.name }} {{ myProfessional?.surname }}</h2>
       </div>
 
       <div class="user-info ml-4">
-        <p>Email: {{ myProf?.email }}</p>
-        <p>DNI: {{ myProf?.DNI }}</p>
-        <p>Telefono: {{ myProf?.phone }}</p>
+        <p>Email: {{ myProfessional?.email }}</p>
+        <p>DNI: {{ myProfessional?.DNI }}</p>
+        <p>Telefono: {{ myProfessional?.phone }}</p>
         <p>Habilidades:</p>
         <p>Dirección</p>
-        <p>Ciudad: {{ myProf?.address.city }}</p>
-        <p>Calle: {{ myProf?.address.street }}</p>
-        <p>Código postal: {{ myProf?.address.zip }}</p>
-        <p>Zip code: {{ myProf?.address.zip }}</p>
+        <p>Ciudad: {{ myProfessional?.address.city }}</p>
+        <p>Calle: {{ myProfessional?.address.street }}</p>
+        <p>Código postal: {{ myProfessional?.address.zip }}</p>
+        <p>Zip code: {{ myProfessional?.address.zip }}</p>
       </div>
 
-      <div class="buttons-container">
+      <div class="buttons-container" *ngIf="displayLocalUser">
         <arreglalo-button
           (click)="toggleEditProfile()"
           buttonColor="primary"
@@ -42,6 +42,13 @@
         <button class="button-danger" (click)="deleteProfile()">
           Borrar perfil
         </button>
+      </div>
+      <div class="buttons-container" *ngIf="!displayLocalUser">
+        <arreglalo-button
+          buttonColor="primary"
+          buttonText="Contratar"
+          buttonSmall="small"
+        ></arreglalo-button>
       </div>
     </div>
   </div>
@@ -64,7 +71,7 @@
           type="text"
           formControlName="skills"
           autocomplete="nope"
-          value="{{ myProf?.skills }}"
+          value="{{ myProfessional?.skills }}"
         />
         <span
           for="skills"
