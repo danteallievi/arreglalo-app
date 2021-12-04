@@ -6,7 +6,19 @@
   height: 150px;
   display: flex;
   align-items: center;
+  cursor: pointer;
+  transition: transform 0.25s ease-out;
 }
+
+.card:hover {
+  @apply bg-tertiary;
+  transform: scale(1.05);
+}
+
+.card:hover img {
+  @apply bg-tertiary;
+}
+
 .avatar {
   @apply bg-secondary rounded-full;
   object-fit: contain;
@@ -14,6 +26,7 @@
   height: 75px;
   flex: 1;
 }
+
 .description {
   display: flex;
   height: 100%;
