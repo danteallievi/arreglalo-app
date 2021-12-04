@@ -6,6 +6,7 @@
 * {
   box-sizing: border-box;
   font-family: Roboto, "Times New Roman", serif;
+  word-break: break-word;
 }
 
 h1 {
