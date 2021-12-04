@@ -23,6 +23,18 @@ export class AuthService {
     return this.currentUser;
   }
 
+  getUserId() {
+    const userLogged = localStorage.getItem("user")
+      ? JSON.parse(localStorage.getItem("user") || "")
+      : "";
+
+    if (userLogged) {
+      const user: LocalUser = jwtDecode(userLogged.token);
+      return user.id;
+    }
+    return "";
+  }
+
   setUserToken(user: IUser) {
     localStorage.setItem("user", JSON.stringify(user));
   }

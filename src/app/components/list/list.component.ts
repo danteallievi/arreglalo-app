@@ -1,4 +1,5 @@
 import { Component, AfterViewInit } from "@angular/core";
+import { Router } from "@angular/router";
 import { StoreService } from "src/app/core/services/store/store.service";
 
 @Component({
@@ -9,7 +10,7 @@ import { StoreService } from "src/app/core/services/store/store.service";
 export class ListComponent implements AfterViewInit {
   professionals$ = this.storeService.professionals$;
 
-  constructor(public storeService: StoreService) {}
+  constructor(public storeService: StoreService, public router: Router) {}
 
   ngAfterViewInit() {
     this.professionals$.next({});
@@ -25,5 +26,9 @@ export class ListComponent implements AfterViewInit {
       age -= 1;
     }
     return age;
+  }
+
+  handleCardClick(id: string) {
+    this.router.navigate(["/detail/", id]);
   }
 }

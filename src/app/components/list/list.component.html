@@ -1,6 +1,7 @@
 <arreglalo-navbar></arreglalo-navbar>
 <div class="bg-quaternary content">
   <h1 class="text-4xl py-8 text-center">Profesionales</h1>
+
   <div class="cards-container">
     <arreglalo-card
       *ngFor="let professional of storeService.professionalsSubject$ | async"
@@ -10,6 +11,7 @@
       image="{{ professional.avatar }}"
       age="{{ calculateUserAge(professional.dateOfBirth) }}"
       calification="{{ professional.rate }}"
+      (click)="handleCardClick(professional.id)"
     >
     </arreglalo-card>
   </div>
