@@ -1,41 +1,269 @@
 <arreglalo-navbar></arreglalo-navbar>
-<div class="content">
-  <h1 class="text-4xl text-center mt-3">{{ myProf?.skills }}</h1>
 
-  <div class="main-content">
-    <div class="user-detail">
-      <img
-        class="avatar mr-4"
-        width="75"
-        height="75"
-        src="{{ myProf?.avatar }}"
-        alt="{{ myProf?.name }}"
-      />
-      <h2>{{ myProf?.name }} {{ myProf?.surname }}</h2>
-    </div>
+<ng-container *ngIf="isEditingProfile; then editingProfile; else detailProfile">
+</ng-container>
 
-    <div class="user-info ml-4">
-      <p>Email: {{ myProf?.email }}</p>
-      <p>DNI: {{ myProf?.DNI }}</p>
-      <p>Telefono: {{ myProf?.phone }}</p>
-      <p>Habilidades:</p>
-      <p>Dirección</p>
-      <p>Ciudad: {{ myProf?.address.city }}</p>
-      <p>Calle: {{ myProf?.address.street }}</p>
-      <p>Código postal: {{ myProf?.address.zip }}</p>
-      <p>Zip code: {{ myProf?.address.zip }}</p>
-    </div>
+<ng-template #detailProfile>
+  <div class="content">
+    <h1 class="text-4xl text-center mt-3">{{ myProf?.skills }}</h1>
 
-    <div class="button-edit">
-      <arreglalo-button
-        buttonColor="primary"
-        buttonText="Editar"
-        buttonSmall="small"
-      ></arreglalo-button>
+    <div class="main-content">
+      <div class="user-detail">
+        <img
+          class="avatar mr-4"
+          width="75"
+          height="75"
+          src="{{ myProf?.avatar }}"
+          alt="{{ myProf?.name }}"
+        />
+        <h2>{{ myProf?.name }} {{ myProf?.surname }}</h2>
+      </div>
 
-      <button class="button-delete" (click)="deleteProfile()">
-        Borrar perfil
-      </button>
+      <div class="user-info ml-4">
+        <p>Email: {{ myProf?.email }}</p>
+        <p>DNI: {{ myProf?.DNI }}</p>
+        <p>Telefono: {{ myProf?.phone }}</p>
+        <p>Habilidades:</p>
+        <p>Dirección</p>
+        <p>Ciudad: {{ myProf?.address.city }}</p>
+        <p>Calle: {{ myProf?.address.street }}</p>
+        <p>Código postal: {{ myProf?.address.zip }}</p>
+        <p>Zip code: {{ myProf?.address.zip }}</p>
+      </div>
+
+      <div class="buttons-container">
+        <arreglalo-button
+          (click)="toggleEditProfile()"
+          buttonColor="primary"
+          buttonText="Editar"
+          buttonSmall="small"
+        ></arreglalo-button>
+
+        <button class="button-danger" (click)="deleteProfile()">
+          Borrar perfil
+        </button>
+      </div>
     </div>
   </div>
-</div>
+</ng-template>
+
+<ng-template #editingProfile>
+  <div class="content">
+    <h1 class="text-4xl text-center mt-3">Editando perfil</h1>
+    <form
+      class="form-container-edit"
+      [formGroup]="updateProfessionalProfileForm"
+      (ngSubmit)="updateProfile(updateProfessionalProfileForm)"
+      autocomplete="nope"
+    >
+      <div class="form-input-group">
+        <label for="skills">Profesión / Habildiades: </label>
+        <input
+          id="skills"
+          placeholder="Habilidades / Profesión"
+          type="text"
+          formControlName="skills"
+          autocomplete="nope"
+          value="{{ myProf?.skills }}"
+        />
+        <span
+          for="skills"
+          class="error-message text-danger"
+          *ngIf="
+            updateProfessionalProfileForm.controls['skills'].dirty &&
+            updateProfessionalProfileForm.hasError('required', 'skills')
+          "
+        >
+          *Campo obligatorio</span
+        >
+      </div>
+
+      <div class="form-input-group">
+        <label for="email">Email: </label>
+        <input
+          id="email"
+          placeholder="Email"
+          type="email"
+          formControlName="email"
+          autocomplete="nope"
+          email="true"
+        />
+        <span
+          for="email"
+          class="error-message text-danger"
+          *ngIf="
+            updateProfessionalProfileForm.controls['email'].dirty &&
+            updateProfessionalProfileForm.hasError('required', 'email')
+          "
+        >
+          *Campo obligatorio</span
+        >
+      </div>
+
+      <div class="form-input-group">
+        <label for="name">Nombre: </label>
+        <input
+          id="name"
+          placeholder="Nombre"
+          type="name"
+          formControlName="name"
+          autocomplete="nope"
+        />
+        <span
+          for="name"
+          class="error-message text-danger"
+          *ngIf="
+            updateProfessionalProfileForm.controls['name'].dirty &&
+            updateProfessionalProfileForm.hasError('required', 'name')
+          "
+        >
+          *Campo obligatorio</span
+        >
+      </div>
+
+      <div class="form-input-group">
+        <label for="surname">Apellido: </label>
+        <input
+          id="surname"
+          placeholder="Apellido"
+          type="surname"
+          formControlName="surname"
+          autocomplete="nope"
+        />
+        <span
+          for="surname"
+          class="error-message text-danger"
+          *ngIf="
+            updateProfessionalProfileForm.controls['surname'].dirty &&
+            updateProfessionalProfileForm.hasError('required', 'surname')
+          "
+        >
+          *Campo obligatorio</span
+        >
+      </div>
+
+      <div class="form-input-group">
+        <label for="dni">DNI: </label>
+        <input
+          id="dni"
+          placeholder="DNI"
+          type="number"
+          formControlName="DNINumber"
+          autocomplete="nope"
+        />
+        <span
+          for="DNINumber"
+          class="error-message text-danger"
+          *ngIf="
+            updateProfessionalProfileForm.controls['DNINumber'].dirty &&
+            updateProfessionalProfileForm.hasError('required', 'DNINumber')
+          "
+        >
+          *Campo obligatorio</span
+        >
+      </div>
+
+      <div class="form-input-group">
+        <label for="phone">Teléfono: </label>
+        <input
+          id="phone"
+          placeholder="Teléfono"
+          type="number"
+          formControlName="phoneNumber"
+          autocomplete="nope"
+        />
+        <span
+          for="phoneNumber"
+          class="error-message text-danger"
+          *ngIf="
+            updateProfessionalProfileForm.controls['phoneNumber'].dirty &&
+            updateProfessionalProfileForm.hasError('required', 'phoneNumber')
+          "
+        >
+          *Campo obligatorio</span
+        >
+      </div>
+
+      <div class="form-input-group">
+        <label for="city">Ciudad: </label>
+        <input
+          id="city"
+          placeholder="Ciudad"
+          type="text"
+          formControlName="city"
+          autocomplete="nope"
+        />
+        <span
+          for="city"
+          class="error-message text-danger"
+          *ngIf="
+            updateProfessionalProfileForm.controls['city'].dirty &&
+            updateProfessionalProfileForm.hasError('required', 'city')
+          "
+        >
+          *Campo obligatorio</span
+        >
+      </div>
+
+      <div class="form-input-group">
+        <label for="street">Calle: </label>
+        <input
+          id="street"
+          placeholder="Calle"
+          type="text"
+          formControlName="street"
+          autocomplete="nope"
+        />
+        <span
+          for="street"
+          class="error-message text-danger"
+          *ngIf="
+            updateProfessionalProfileForm.controls['street'].dirty &&
+            updateProfessionalProfileForm.hasError('required', 'street')
+          "
+        >
+          *Campo obligatorio</span
+        >
+      </div>
+
+      <div class="form-input-group">
+        <label for="zip">Código postal: </label>
+        <input
+          id="zip"
+          placeholder="Código postal"
+          type="number"
+          formControlName="zipNumber"
+          autocomplete="nope"
+        />
+        <span
+          for="zipNumber"
+          class="error-message text-danger"
+          *ngIf="
+            updateProfessionalProfileForm.controls['zipNumber'].dirty &&
+            updateProfessionalProfileForm.hasError('required', 'zipNumber')
+          "
+        >
+          *Campo obligatorio</span
+        >
+      </div>
+
+      <div class="buttons-container">
+        <button
+          class="button-submit"
+          type="submit"
+          [disabled]="updateProfessionalProfileForm.invalid"
+        >
+          Guardar cambios
+        </button>
+
+        <button
+          class="button-danger"
+          (click)="toggleEditProfile(updateProfessionalProfileForm)"
+          type="reset"
+        >
+          Cancelar
+        </button>
+      </div>
+    </form>
+  </div>
+</ng-template>

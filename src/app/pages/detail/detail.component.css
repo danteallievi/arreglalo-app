@@ -1,10 +1,10 @@
 .content {
-  @apply px-5 bg-quaternary;
+  @apply p-5 bg-quaternary;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 10vh;
-  min-height: 90vh;
+  min-height: 100vh;
 }
 
 .main-content {
@@ -28,13 +28,13 @@
   height: 75px;
 }
 
-.button-edit {
+.buttons-container {
   margin-top: 1.5rem;
   display: flex;
   flex-direction: column;
 }
 
-.button-delete {
+.button-danger {
   @apply shadow-lg bg-red-700 mt-5;
   color: #fff;
   border-radius: 20px;
@@ -44,4 +44,50 @@
   text-align: center;
   width: 180px;
   height: 55px;
+}
+
+.button-submit-edit {
+  @apply shadow-lg bg-primary mt-5;
+  color: #fff;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 21px;
+  text-align: center;
+  width: 180px;
+  height: 55px;
+}
+
+.form-input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-container-edit {
+  @apply w-full;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
+.button-submit {
+  @apply shadow-lg bg-primary mx-auto mt-8;
+  color: #fff;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 21px;
+  text-align: center;
+  width: 180px;
+  height: 55px;
+  transition: all 0.25s ease-out;
+}
+.button-submit:disabled {
+  cursor: default;
+  background-color: #ccc;
+}
+
+.button-submit:focus {
+  outline: none;
 }

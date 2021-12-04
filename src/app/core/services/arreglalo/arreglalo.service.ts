@@ -22,7 +22,7 @@ export class ArreglaloService {
     });
   }
 
-  getCurrentProfessional(): any {
+  getCurrentProfessional(): Observable<any> {
     this.userInfo = this.userData.getUserData();
     return this.http.get(`${this.apiUrl}professional/${this.userInfo?.id}`, {
       headers: { Authorization: `Bearer ${this.userToken}` },
@@ -39,6 +39,13 @@ export class ArreglaloService {
   deleteProfessional(): Observable<any> {
     this.userToken = this.userData.getUserToken();
     return this.http.delete(`${this.apiUrl}professional/delete`, {
+      headers: { Authorization: `Bearer ${this.userToken}` },
+    });
+  }
+
+  updateProfesional(professional: IProfessional): Observable<any> {
+    this.userToken = this.userData.getUserToken();
+    return this.http.put(`${this.apiUrl}professional/update`, professional, {
       headers: { Authorization: `Bearer ${this.userToken}` },
     });
   }
