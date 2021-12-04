@@ -15,4 +15,6 @@ export interface IProfessional {
   dateOfBirth: string;
   address: IAddress;
   skills: string[];
+  clients?: string[];
+  professional?: boolean;
 }
