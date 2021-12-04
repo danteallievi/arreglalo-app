@@ -83,3 +83,11 @@
   height: 55px;
   transition: all 0.25s ease-out;
 }
+.button-submit:disabled {
+  cursor: default;
+  background-color: #ccc;
+}
+
+.button-submit:focus {
+  outline: none;
+}
