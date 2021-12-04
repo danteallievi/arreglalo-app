@@ -18,6 +18,7 @@ export class DetailComponent implements OnInit {
   updateProfessionalProfileForm?: FormGroup | any;
 
   isEditingProfile: boolean = false;
+  isLoadingThePage: boolean = false;
 
   myProfessional?: any | IProfessional;
 
@@ -33,6 +34,7 @@ export class DetailComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.isLoadingThePage = true;
     if (this.displayLocalUser) {
       this.storeService.currentProfessionalSubject$.subscribe({
         next: (data) => {
@@ -48,6 +50,10 @@ export class DetailComponent implements OnInit {
             city: [this.myProfessional.address.city, Validators.required],
             zipNumber: [this.myProfessional.address.zip, Validators.required],
           });
+          this.isLoadingThePage = false;
+        },
+        error: (err) => {
+          console.log(err);
         },
       });
     } else {
@@ -55,6 +61,10 @@ export class DetailComponent implements OnInit {
       this.storeService.visitedProfessionalSubject$.subscribe({
         next: (data) => {
           this.myProfessional = data;
+          this.isLoadingThePage = false;
+        },
+        error: () => {
+          this.router.navigate(["/not-found"]);
         },
       });
     }

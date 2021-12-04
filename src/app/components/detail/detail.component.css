@@ -4,15 +4,25 @@
   flex-direction: column;
   align-items: center;
   margin-top: 10vh;
+  min-height: 90vh;
+  height: 100%;
+}
+.loading {
+  @apply bg-quaternary;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   min-height: 100vh;
+}
+.loading h1 {
+  font-size: 6rem;
 }
 
 .main-content {
-  @apply w-full mt-2;
+  @apply w-full mt-2 sm:mt-5;
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 50vh;
 }
 
 .user-detail {

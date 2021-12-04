@@ -10,7 +10,8 @@ import { RegisterComponent } from "./pages/register/register.component";
 import { RegisterProfessionalComponent } from "./pages/register/register-professional/register-professional.component";
 import { PageNotFoundComponent } from "./components/page-not-found/page-not-found.component";
 import { ProfileComponent } from "./pages/profile/profile.component";
-import { DetailComponent } from "./pages/detail/detail.component";
+import { DetailComponent } from "./components/detail/detail.component";
+import { VisitedUserComponent } from "./pages/visited-user/visited-user.component";
 
 const routes: Routes = [
   { path: "", redirectTo: "/landing", pathMatch: "full" },
@@ -50,12 +51,9 @@ const routes: Routes = [
     canActivate: [ProtectRouteGuard],
     component: ProfileComponent,
   },
-  {
-    path: "profile-edit",
-    pathMatch: "full",
-    canActivate: [ProtectRouteGuard],
-    component: DetailComponent,
-  },
+
+  { path: "detail", component: VisitedUserComponent },
+  { path: "detail/:id", component: VisitedUserComponent },
   { path: "**", pathMatch: "full", component: PageNotFoundComponent },
 ];
 
