@@ -106,7 +106,7 @@ export class DetailComponent implements OnInit {
     this.publicMethods.updateCurrentProfesional(newProfessional).subscribe({
       complete: () => {
         this.storeService.currentProfessional$.next({});
-        this.router.navigate(["/profile-edit"]);
+        this.router.navigate(["/detail"]);
         this.isEditingProfile = false;
       },
     });
