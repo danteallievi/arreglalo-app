@@ -10,7 +10,6 @@ import { RegisterComponent } from "./pages/register/register.component";
 import { RegisterProfessionalComponent } from "./pages/register/register-professional/register-professional.component";
 import { PageNotFoundComponent } from "./components/page-not-found/page-not-found.component";
 import { ProfileComponent } from "./pages/profile/profile.component";
-import { DetailComponent } from "./components/detail/detail.component";
 import { VisitedUserComponent } from "./pages/visited-user/visited-user.component";
 
 const routes: Routes = [
