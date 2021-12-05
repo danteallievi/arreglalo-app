@@ -36,4 +36,5 @@
 
 .navbar-mobile-modal .navbar-mobile-modal__list--logout {
   margin-top: 10vh;
+  cursor: pointer;
 }
