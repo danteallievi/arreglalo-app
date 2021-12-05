@@ -9,7 +9,7 @@
     "prepare": "husky install",
     "lint": "npx eslint --ignore-path .gitignore .",
     "test": "ng test --browsers=ChromeHeadless --no-watch",
-    "test-cov": "ng test --browsers=ChromeHeadless --code-coverage --no-watch",
+    "test-cov": "ng test --code-coverage",
     "test-local": "ng test"
   },
   "private": true,
