@@ -16,6 +16,12 @@ export class StoreService {
     switchMap(() => this.printCurrentProfessional())
   );
 
+  public currentClientProfessionals$ = new BehaviorSubject<{}>({});
+  public currentClientProfessionalsSubject$ =
+    this.currentClientProfessionals$.pipe(
+      switchMap(() => this.printHiredProfessionals())
+    );
+
   public visitedProfessional$ = new BehaviorSubject<string>("");
   public visitedProfessionalSubject$ = this.visitedProfessional$.pipe(
     switchMap((id: string) => this.printVisitedProfessional(id))
@@ -25,6 +31,10 @@ export class StoreService {
 
   public printProfessional() {
     return this.arreglaloService.getProfessionals();
+  }
+
+  public printHiredProfessionals() {
+    return this.arreglaloService.getHiredProfessionals();
   }
 
   public printCurrentProfessional() {

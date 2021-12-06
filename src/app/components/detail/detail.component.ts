@@ -5,6 +5,7 @@ import { FormGroup, FormBuilder, Validators, NgForm } from "@angular/forms";
 import { IProfessional } from "src/app/core/models/Professional";
 import { PublicMethodsService } from "src/app/core/services/methods/public-methods.service";
 import { StoreService } from "src/app/core/services/store/store.service";
+import jwtDecode from "jwt-decode";
 
 @Component({
   selector: "arreglalo-detail",
@@ -24,6 +25,8 @@ export class DetailComponent implements OnInit {
   visitedProfessional$ = this.storeService.visitedProfessional$;
   currentProfessional$ = this.storeService.currentProfessional$;
 
+  loggedUserData: any;
+
   constructor(
     public storeService: StoreService,
     public router: Router,
@@ -32,6 +35,14 @@ export class DetailComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    const userLogged = localStorage.getItem("user")
+      ? JSON.parse(localStorage.getItem("user") || "")
+      : "";
+
+    if (userLogged) {
+      this.loggedUserData = jwtDecode(userLogged.token);
+    }
+
     this.isLoadingThePage = true;
     if (this.displayLocalUser) {
       this.storeService.currentProfessionalSubject$.subscribe({
@@ -124,5 +135,15 @@ export class DetailComponent implements OnInit {
         zipNumber: [this.myProfessional?.address.zip],
       });
     }
+  }
+
+  handleHireClick(professionalToHireId: string) {
+    this.publicMethods
+      .hireSelectedProfessional(professionalToHireId)
+      .subscribe({
+        complete: () => {
+          // modal
+        },
+      });
   }
 }

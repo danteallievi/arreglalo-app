@@ -1,0 +1,17 @@
+<arreglalo-navbar></arreglalo-navbar>
+<div class="bg-quaternary content">
+  <h1 class="text-4xl py-8 text-center">Profesionales contratados</h1>
+
+  <div class="cards-container">
+    <arreglalo-card
+      *ngFor="let professional of myProfessionalsHired"
+      class="cards-responsive"
+      username="{{ professional.name }}"
+      profession="{{ professional.skills }}"
+      age="{{ calculateUserAge(professional.dateOfBirth) }}"
+      image="{{ professional.avatar }}"
+      calification="{{ professional.rate }}"
+    >
+    </arreglalo-card>
+  </div>
+</div>

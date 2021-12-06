@@ -1,0 +1,1 @@
+import "./arreglalo.module";

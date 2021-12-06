@@ -33,6 +33,10 @@ export class PublicMethodsService {
     return this.arreglaloService.updateProfesional(professional);
   }
 
+  public hireSelectedProfessional(professionalToHireId: string) {
+    return this.arreglaloService.hireProfessional(professionalToHireId);
+  }
+
   public async removeUserToken() {
     await localStorage.removeItem("user");
     this.router.navigate(["/landing"]);

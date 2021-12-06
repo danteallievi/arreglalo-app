@@ -18,6 +18,7 @@ import { RegisterProfessionalComponent } from "./pages/register/register-profess
 import { ProfileComponent } from "./pages/profile/profile.component";
 import { DetailComponent } from "./components/detail/detail.component";
 import { VisitedUserComponent } from './pages/visited-user/visited-user.component';
+import { HiredListComponent } from './components/hired-list/hired-list.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { VisitedUserComponent } from './pages/visited-user/visited-user.componen
     ProfileComponent,
     DetailComponent,
     VisitedUserComponent,
+    HiredListComponent,
   ],
   imports: [
     BrowserModule,

@@ -41,25 +41,29 @@
           <p>Código postal: {{ myProfessional?.address.zip }}</p>
           <p>Zip code: {{ myProfessional?.address.zip }}</p>
         </div>
+        <div *ngIf="loggedUserData.professional">
+          <div class="buttons-container" *ngIf="displayLocalUser">
+            <arreglalo-button
+              (click)="toggleEditProfile()"
+              buttonColor="primary"
+              buttonText="Editar"
+              buttonSmall="small"
+            ></arreglalo-button>
 
-        <div class="buttons-container" *ngIf="displayLocalUser">
-          <arreglalo-button
-            (click)="toggleEditProfile()"
-            buttonColor="primary"
-            buttonText="Editar"
-            buttonSmall="small"
-          ></arreglalo-button>
-
-          <button class="button-danger" (click)="deleteProfile()">
-            Borrar perfil
-          </button>
+            <button class="button-danger" (click)="deleteProfile()">
+              Borrar perfil
+            </button>
+          </div>
         </div>
-        <div class="buttons-container" *ngIf="!displayLocalUser">
-          <arreglalo-button
-            buttonColor="primary"
-            buttonText="Contratar"
-            buttonSmall="small"
-          ></arreglalo-button>
+        <div *ngIf="!loggedUserData.professional">
+          <div class="buttons-container" *ngIf="!displayLocalUser">
+            <arreglalo-button
+              buttonColor="primary"
+              buttonText="Contratar"
+              buttonSmall="small"
+              (click)="handleHireClick(myProfessional?.id)"
+            ></arreglalo-button>
+          </div>
         </div>
       </div>
     </div>

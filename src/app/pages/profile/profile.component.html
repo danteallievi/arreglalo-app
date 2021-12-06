@@ -10,9 +10,13 @@
         buttonColor="secondary"
       ></arreglalo-button>
     </a>
-    <arreglalo-button
-      buttonText="Profesionales contratados"
-      buttonColor="secondary"
-    ></arreglalo-button>
+    <div *ngIf="!loggedUserData.professional">
+      <a routerLink="/professionals-hired">
+        <arreglalo-button
+          buttonText="Profesionales contratados"
+          buttonColor="secondary"
+        ></arreglalo-button>
+      </a>
+    </div>
   </div>
 </div>
