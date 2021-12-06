@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { AuthService } from "src/app/core/services/auth/auth.service";
+import jwtDecode from "jwt-decode";
+
+import { LocalUser } from "src/app/core/models/User";
 
 @Component({
   selector: "arreglalo-visited-user",
@@ -9,12 +11,24 @@ import { AuthService } from "src/app/core/services/auth/auth.service";
 })
 export class VisitedUserComponent implements OnInit {
   isVisitedProfile: boolean = false;
-  userIdToDisplay: string = this.localUser.getUserId();
+  userIdToDisplay: string = this.getUserId();
 
-  constructor(public route: ActivatedRoute, public localUser: AuthService) {}
+  constructor(public route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.getProfessionalToVisit();
+  }
+
+  getUserId() {
+    const userLogged = localStorage.getItem("user")
+      ? JSON.parse(localStorage.getItem("user") || "")
+      : "";
+
+    if (userLogged) {
+      const user: LocalUser = jwtDecode(userLogged.token);
+      return user.id;
+    }
+    return "";
   }
 
   getProfessionalToVisit(): string | null {
