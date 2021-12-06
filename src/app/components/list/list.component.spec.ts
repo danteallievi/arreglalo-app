@@ -33,6 +33,13 @@ describe("Given the HamburgerComponent", () => {
       expect(component.calculateUserAge).toBeDefined();
     });
 
+    it("should have a method calculateUserAge", () => {
+      const spyFn = spyOn(component, "calculateUserAge").and.callThrough();
+      component.calculateUserAge(new Date());
+
+      expect(spyFn).toHaveBeenCalled();
+    });
+
     it("should navigate to the detail page when the user clicks on a card with a given id", () => {
       const navigateSpy = spyOn((<any>component).router, "navigate");
       const id = "123";
