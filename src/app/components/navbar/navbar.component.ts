@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { AuthService } from "src/app/core/services/auth/auth.service";
+import { PublicMethodsService } from "src/app/core/services/methods/public-methods.service";
 
 @Component({
   selector: "arreglalo-navbar",
@@ -9,13 +9,13 @@ import { AuthService } from "src/app/core/services/auth/auth.service";
 export class NavbarComponent {
   isOpen: boolean = true;
 
-  constructor(public authService: AuthService) {}
+  constructor(public publicMethods: PublicMethodsService) {}
 
   toggleNavbar() {
     this.isOpen = !this.isOpen;
   }
 
   logOutUser() {
-    this.authService.removeUserToken();
+    this.publicMethods.removeUserToken();
   }
 }

@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
 
 import { IProfessional } from "../../models/Professional";
 import { IUser } from "../../models/User";
@@ -11,7 +12,8 @@ import { UserService } from "../user/user.service";
 export class PublicMethodsService {
   constructor(
     private userService: UserService,
-    private arreglaloService: ArreglaloService
+    private arreglaloService: ArreglaloService,
+    private router: Router
   ) {}
 
   public loginUser(user: IUser) {
@@ -29,5 +31,10 @@ export class PublicMethodsService {
 
   public updateCurrentProfesional(professional: IProfessional) {
     return this.arreglaloService.updateProfesional(professional);
+  }
+
+  public async removeUserToken() {
+    await localStorage.removeItem("user");
+    this.router.navigate(["/landing"]);
   }
 }
