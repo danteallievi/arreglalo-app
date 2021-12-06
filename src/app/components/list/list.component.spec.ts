@@ -1,5 +1,4 @@
 import { HttpClientTestingModule } from "@angular/common/http/testing";
-
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { RouterTestingModule } from "@angular/router/testing";
 import { ArreglaloService } from "src/app/core/services/arreglalo/arreglalo.service";
@@ -31,6 +30,13 @@ describe("Given the HamburgerComponent", () => {
 
     it("should have a method calculateUserAge", () => {
       expect(component.calculateUserAge).toBeDefined();
+    });
+
+    it("should have a method calculateUserAge", () => {
+      const spyFn = spyOn(component, "calculateUserAge").and.callThrough();
+      component.calculateUserAge(new Date());
+
+      expect(spyFn).toHaveBeenCalled();
     });
 
     it("should navigate to the detail page when the user clicks on a card with a given id", () => {

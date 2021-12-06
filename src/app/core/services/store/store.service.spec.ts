@@ -4,8 +4,10 @@ import { RouterTestingModule } from "@angular/router/testing";
 import { of } from "rxjs";
 
 import { StoreService } from "./store.service";
+import { ArreglaloService } from "../arreglalo/arreglalo.service";
 
 let storeService: StoreService;
+let arreglaloService: ArreglaloService;
 
 const myProfessionals = [
   {
@@ -18,16 +20,25 @@ const myProfessionals = [
 const StoreServiceMock = {
   printProfessional: () => of(myProfessionals),
   printCurrentProfessional: () => of(myProfessionals),
-  printVisitedProfessional: () => of(myProfessionals),
+  printVisitedProfessional: () => {},
+};
+
+const ArreglaloServiceMock = {
+  getCurrentProfessional: () => {},
+  getVisitedProfessional: () => {},
 };
 
 describe("StoreService", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule, RouterTestingModule],
-      providers: [{ provide: StoreService, useValue: StoreServiceMock }],
+      providers: [
+        { provide: StoreService, useValue: StoreServiceMock },
+        { provide: ArreglaloService, useValue: ArreglaloServiceMock },
+      ],
     });
     storeService = TestBed.inject(StoreService);
+    arreglaloService = TestBed.inject(ArreglaloService);
   });
 
   it("should be created", () => {
@@ -50,11 +61,14 @@ describe("StoreService", () => {
   });
 
   it("should call printVisitedProfessional", () => {
+    spyOn(arreglaloService, "getVisitedProfessional").and.callThrough();
     const spyFn = spyOn(
       storeService,
       "printVisitedProfessional"
     ).and.callThrough();
+
     storeService.printVisitedProfessional("1");
+
     expect(spyFn).toHaveBeenCalled();
   });
 });

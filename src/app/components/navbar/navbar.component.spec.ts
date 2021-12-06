@@ -62,5 +62,19 @@ describe("Given the HamburgerComponent", () => {
 
       expect(component.toggleNavbar).toHaveBeenCalledTimes(1);
     });
+
+    it("Should call toggleNavbar", () => {
+      const spyFn = spyOn(component, "toggleNavbar").and.callThrough();
+      component.toggleNavbar();
+
+      expect(spyFn).toHaveBeenCalled();
+    });
+
+    it("Should call logOutUser", () => {
+      const spyFn = spyOn(component, "logOutUser").and.callThrough();
+      component.logOutUser();
+
+      expect(spyFn).toHaveBeenCalled();
+    });
   });
 });

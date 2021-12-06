@@ -3,17 +3,32 @@ import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { By } from "@angular/platform-browser";
 import { RouterTestingModule } from "@angular/router/testing";
+import { Observable } from "rxjs";
+
+import { PublicMethodsService } from "src/app/core/services/methods/public-methods.service";
 
 import { ButtonComponent } from "../../../components/button/button.component";
 import { RegisterProfessionalComponent } from "./register-professional.component";
 
 describe("HamburgerComponent", () => {
   let component: RegisterProfessionalComponent;
+  let publicMethods: PublicMethodsService;
   let fixture: ComponentFixture<RegisterProfessionalComponent>;
+
+  class PublicMethodsServiceMock {
+    registerProfessional = () =>
+      new Observable((observer) => {
+        observer.next(component.router.navigate(["/login"]));
+      });
+  }
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [RegisterProfessionalComponent, ButtonComponent],
+      providers: [
+        RegisterProfessionalComponent,
+        { provide: PublicMethodsService, useClass: PublicMethodsServiceMock },
+      ],
       imports: [
         FormsModule,
         ReactiveFormsModule,
@@ -26,6 +41,8 @@ describe("HamburgerComponent", () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(RegisterProfessionalComponent);
     component = fixture.componentInstance;
+
+    publicMethods = TestBed.inject(PublicMethodsService);
     fixture.detectChanges();
   });
 
@@ -180,78 +197,33 @@ describe("HamburgerComponent", () => {
     expect(component.onSubmit).toHaveBeenCalledTimes(1);
   });
 
-  // it("Should navigate if the form is valid", () => {
-  //   const testForm = <NgForm>{
-  //     value: {
-  //       name: "Hello",
-  //       surname: "World",
-  //       email: "asd@asd.com",
-  //       password: "123456",
-  //       phone: "123456789",
-  //       dateOfBirth: "2000-01-01",
-  //       DNINumber: "1234",
-  //       street: "test",
-  //       city: "test",
-  //       zip: "12345",
-  //     },
-  //   };
+  it("Should navigate if the form is valid", () => {
+    const navigateSpy = spyOn((<any>component).router, "navigate");
 
-  //   const navigateSpy = spyOn((<any>component).router, "navigate");
+    const formFake = {
+      email: "holis@holis.com",
+      password: "holis",
+      name: "holis",
+      surname: "holis",
+      phone: "holis",
+      dateOfBirth: "holis",
+      DNINumber: 123,
+      street: "holis",
+      city: "holis",
+      zip: "holis",
+    };
+    const form = fixture.debugElement.query(By.css("form"));
 
-  //   const emailInput =
-  //     fixture.debugElement.nativeElement.querySelectorAll("input")[0];
-  //   const passwordInput =
-  //     fixture.debugElement.nativeElement.querySelectorAll("input")[1];
-  //   const nameInput =
-  //     fixture.debugElement.nativeElement.querySelectorAll("input")[2];
-  //   const surnameInput =
-  //     fixture.debugElement.nativeElement.querySelectorAll("input")[3];
-  //   const phoneInput =
-  //     fixture.debugElement.nativeElement.querySelectorAll("input")[4];
-  //   const dateOfBirthInput =
-  //     fixture.debugElement.nativeElement.querySelectorAll("input")[5];
-  //   const DNIInput =
-  //     fixture.debugElement.nativeElement.querySelectorAll("input")[6];
-  //   const streetInput =
-  //     fixture.debugElement.nativeElement.querySelectorAll("input")[7];
-  //   const cityInput =
-  //     fixture.debugElement.nativeElement.querySelectorAll("input")[8];
-  //   const zipInput =
-  //     fixture.debugElement.nativeElement.querySelectorAll("input")[9];
-  //   const form = fixture.debugElement.query(By.css("form"));
-  //   const button = fixture.debugElement.query(By.css("button"));
-  //   spyOn(component, "onSubmit");
+    component.professionalForm.value = formFake;
 
-  //   emailInput.value = "test@test.com";
-  //   passwordInput.value = "123456";
-  //   nameInput.value = "test";
-  //   surnameInput.value = "test";
-  //   phoneInput.value = "123456789";
-  //   dateOfBirthInput.value = "2000-01-01";
-  //   DNIInput.value = 1234;
-  //   streetInput.value = "test";
-  //   cityInput.value = "test";
-  //   zipInput.value = "12345";
+    const spyFn = spyOn(
+      publicMethods,
+      "registerProfessional"
+    ).and.callThrough();
 
-  //   emailInput.dispatchEvent(new Event("input"));
-  //   passwordInput.dispatchEvent(new Event("input"));
-  //   nameInput.dispatchEvent(new Event("input"));
-  //   surnameInput.dispatchEvent(new Event("input"));
-  //   phoneInput.dispatchEvent(new Event("input"));
-  //   dateOfBirthInput.dispatchEvent(new Event("input"));
-  //   DNIInput.dispatchEvent(new Event("input"));
-  //   streetInput.dispatchEvent(new Event("input"));
-  //   cityInput.dispatchEvent(new Event("input"));
-  //   zipInput.dispatchEvent(new Event("input"));
+    form.triggerEventHandler("submit", null);
 
-  //   fixture.detectChanges();
-  //   form.triggerEventHandler("submit", null);
-  //   component.onSubmit(testForm);
-
-  //   fixture.detectChanges();
-
-  //   expect(component.professionalForm.valid).toBeTrue();
-  //   expect(component.onSubmit).toHaveBeenCalledTimes(1);
-  //   // expect(navigateSpy).toHaveBeenCalledWith(["/login/"]);
-  // });
+    expect(spyFn).toHaveBeenCalled();
+    expect(navigateSpy).toHaveBeenCalledWith(["/login"]);
+  });
 });

@@ -6,11 +6,11 @@ import { HttpClient } from "@angular/common/http";
   providedIn: "root",
 })
 export class UserService {
-  apiURL = "https://proyecto-final-dante-back.herokuapp.com/user/login";
+  apiUrl = "https://danteallievi-finalboss.herokuapp.com/user/login";
 
   constructor(private http: HttpClient) {}
 
   loginUserService(email: string, password: string): Observable<any> {
-    return this.http.post(this.apiURL, { email, password });
+    return this.http.post(this.apiUrl, { email, password });
   }
 }
