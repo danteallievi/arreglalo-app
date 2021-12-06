@@ -11,6 +11,7 @@ import { RegisterProfessionalComponent } from "./pages/register/register-profess
 import { PageNotFoundComponent } from "./components/page-not-found/page-not-found.component";
 import { ProfileComponent } from "./pages/profile/profile.component";
 import { VisitedUserComponent } from "./pages/visited-user/visited-user.component";
+import { HiredListComponent } from "./components/hired-list/hired-list.component";
 
 const routes: Routes = [
   { path: "", redirectTo: "/landing", pathMatch: "full" },
@@ -60,6 +61,11 @@ const routes: Routes = [
     path: "detail/:id",
     canActivate: [ProtectRouteGuard],
     component: VisitedUserComponent,
+  },
+  {
+    path: "professionals-hired",
+    canActivate: [ProtectRouteGuard],
+    component: HiredListComponent,
   },
   { path: "**", pathMatch: "full", component: PageNotFoundComponent },
 ];
