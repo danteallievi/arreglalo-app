@@ -23,15 +23,15 @@ export class StoreService {
 
   private constructor(private arreglaloService: ArreglaloService) {}
 
-  private printProfessional() {
+  public printProfessional() {
     return this.arreglaloService.getProfessionals();
   }
 
-  private printCurrentProfessional() {
+  public printCurrentProfessional() {
     return this.arreglaloService.getCurrentProfessional();
   }
 
-  private printVisitedProfessional(id: string) {
+  public printVisitedProfessional(id: string) {
     return this.arreglaloService.getVisitedProfessional(id);
   }
 }
