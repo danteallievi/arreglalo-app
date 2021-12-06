@@ -13,8 +13,7 @@ export class ArreglaloService {
   userInfo?: LocalUser;
 
   currentUser?: LocalUser;
-  // apiUrl: string = "https://proyecto-final-dante-back.herokuapp.com/";
-  apiUrl: string = "http://localhost:5000/";
+  apiUrl = "https://danteallievi-finalboss.herokuapp.com/";
 
   constructor(private http: HttpClient) {}
 
