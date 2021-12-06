@@ -11,6 +11,10 @@ import { LocalUser } from "../../models/User";
 })
 export class ArreglaloService {
   userInfo?: LocalUser;
+  userData!: {
+    id: string;
+    professional: boolean;
+  };
 
   currentUser?: LocalUser;
   apiUrl = "https://danteallievi-finalboss.herokuapp.com/";
@@ -24,21 +28,24 @@ export class ArreglaloService {
     });
   }
 
+  getHiredProfessionals(): Observable<any> {
+    const userToken = this.getUserToken();
+    return this.http.get(`${this.apiUrl}client/professionals`, {
+      headers: { Authorization: `Bearer ${userToken}` },
+    });
+  }
+
   getCurrentProfessional(): Observable<any> {
     const userToken = this.getUserToken();
-    let userData!: {
-      id: string;
-    };
 
-    const userLogged = localStorage.getItem("user")
-      ? JSON.parse(localStorage.getItem("user") || "")
-      : "";
+    this.getUserLogedInfo();
 
-    if (userLogged) {
-      userData = jwtDecode(userLogged.token);
+    if (this.userData.professional) {
+      return this.http.get(`${this.apiUrl}professional/${this.userData.id}`, {
+        headers: { Authorization: `Bearer ${userToken}` },
+      });
     }
-
-    return this.http.get(`${this.apiUrl}professional/${userData.id}`, {
+    return this.http.get(`${this.apiUrl}client/${this.userData.id}`, {
       headers: { Authorization: `Bearer ${userToken}` },
     });
   }
@@ -60,6 +67,7 @@ export class ArreglaloService {
 
   deleteProfessional(): Observable<any> {
     const userToken = this.getUserToken();
+
     return this.http.delete(`${this.apiUrl}professional/delete`, {
       headers: { Authorization: `Bearer ${userToken}` },
     });
@@ -72,6 +80,19 @@ export class ArreglaloService {
     });
   }
 
+  hireProfessional(professionalToHireId: string): Observable<any> {
+    const userToken = this.getUserToken();
+    return this.http.post(
+      `${this.apiUrl}client/hire/${professionalToHireId}`,
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${userToken}`,
+        },
+      }
+    );
+  }
+
   getUserToken() {
     const userLogged = localStorage.getItem("user")
       ? JSON.parse(localStorage.getItem("user") || "")
@@ -81,5 +102,15 @@ export class ArreglaloService {
       return userLogged.token;
     }
     return null;
+  }
+
+  getUserLogedInfo() {
+    const userLogged = localStorage.getItem("user")
+      ? JSON.parse(localStorage.getItem("user") || "")
+      : "";
+
+    if (userLogged) {
+      this.userData = jwtDecode(userLogged.token);
+    }
   }
 }
