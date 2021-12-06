@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { FormGroup, FormBuilder, Validators, NgForm } from "@angular/forms";
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { PublicMethodsService } from "src/app/core/services/methods/public-methods.service";
 
@@ -32,8 +32,9 @@ export class RegisterProfessionalComponent implements OnInit {
     });
   }
 
-  onSubmit(form: NgForm) {
-    const { street, city, zip, DNINumber, ...allRestInputs } = form.value;
+  onSubmit() {
+    const { street, city, zip, DNINumber, ...allRestInputs } =
+      this.professionalForm.value;
     const DNI = DNINumber.toString();
     const newProfessional = {
       ...allRestInputs,
@@ -46,13 +47,11 @@ export class RegisterProfessionalComponent implements OnInit {
       skills: ["asd"],
     };
 
-    if (form.valid) {
-      this.publicMethods.registerProfessional(newProfessional).subscribe({
-        next: () => {
-          this.router.navigate(["/login"]);
-          form.reset();
-        },
-      });
-    }
+    this.publicMethods.registerProfessional(newProfessional).subscribe({
+      next: () => {
+        this.router.navigate(["/login"]);
+        this.professionalForm.reset();
+      },
+    });
   }
 }
