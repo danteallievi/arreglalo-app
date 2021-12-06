@@ -13,7 +13,7 @@ export class RegisterProfessionalComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private router: Router,
+    public router: Router,
     private publicMethods: PublicMethodsService
   ) {}
 
