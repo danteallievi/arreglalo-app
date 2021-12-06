@@ -51,8 +51,16 @@ const routes: Routes = [
     component: ProfileComponent,
   },
 
-  { path: "detail", component: VisitedUserComponent },
-  { path: "detail/:id", component: VisitedUserComponent },
+  {
+    path: "detail",
+    canActivate: [ProtectRouteGuard],
+    component: VisitedUserComponent,
+  },
+  {
+    path: "detail/:id",
+    canActivate: [ProtectRouteGuard],
+    component: VisitedUserComponent,
+  },
   { path: "**", pathMatch: "full", component: PageNotFoundComponent },
 ];
 
