@@ -3,7 +3,6 @@ import { Router } from "@angular/router";
 import { FormGroup, FormBuilder, Validators, NgForm } from "@angular/forms";
 
 import { IProfessional } from "src/app/core/models/Professional";
-import { AuthService } from "src/app/core/services/auth/auth.service";
 import { PublicMethodsService } from "src/app/core/services/methods/public-methods.service";
 import { StoreService } from "src/app/core/services/store/store.service";
 
@@ -29,7 +28,6 @@ export class DetailComponent implements OnInit {
     public storeService: StoreService,
     public router: Router,
     public publicMethods: PublicMethodsService,
-    public authMethods: AuthService,
     public formBuilder: FormBuilder
   ) {}
 
@@ -73,7 +71,7 @@ export class DetailComponent implements OnInit {
   deleteProfile() {
     this.publicMethods.deleteProfessionalProfile().subscribe({
       next: () => {
-        this.authMethods.removeUserToken();
+        this.publicMethods.removeUserToken();
         this.router.navigate(["/landing"]);
       },
     });

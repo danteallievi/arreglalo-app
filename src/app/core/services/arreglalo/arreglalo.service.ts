@@ -1,38 +1,54 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import jwtDecode from "jwt-decode";
+
 import { IProfessional } from "../../models/Professional";
 import { LocalUser } from "../../models/User";
-import { AuthService } from "../auth/auth.service";
 
 @Injectable({
   providedIn: "root",
 })
 export class ArreglaloService {
   userInfo?: LocalUser;
-  userToken?: string;
-  apiUrl: string = "https://proyecto-final-dante-back.herokuapp.com/";
 
-  constructor(private http: HttpClient, private userData: AuthService) {}
+  currentUser?: LocalUser;
+  // apiUrl: string = "https://proyecto-final-dante-back.herokuapp.com/";
+  apiUrl: string = "http://localhost:5000/";
+
+  constructor(private http: HttpClient) {}
 
   getProfessionals(): Observable<any> {
-    this.userToken = this.userData.getUserToken();
+    const userToken = this.getUserToken();
     return this.http.get(`${this.apiUrl}professional`, {
-      headers: { Authorization: `Bearer ${this.userToken}` },
+      headers: { Authorization: `Bearer ${userToken}` },
     });
   }
 
   getCurrentProfessional(): Observable<any> {
-    this.userInfo = this.userData.getUserData();
-    return this.http.get(`${this.apiUrl}professional/${this.userInfo?.id}`, {
-      headers: { Authorization: `Bearer ${this.userToken}` },
+    const userToken = this.getUserToken();
+    let userData!: {
+      id: string;
+    };
+
+    const userLogged = localStorage.getItem("user")
+      ? JSON.parse(localStorage.getItem("user") || "")
+      : "";
+
+    if (userLogged) {
+      userData = jwtDecode(userLogged.token);
+    }
+
+    return this.http.get(`${this.apiUrl}professional/${userData.id}`, {
+      headers: { Authorization: `Bearer ${userToken}` },
     });
   }
 
   getVisitedProfessional(id: string): Observable<any> {
-    this.userInfo = this.userData.getUserData();
+    const userToken = this.getUserToken();
+
     return this.http.get(`${this.apiUrl}professional/${id}`, {
-      headers: { Authorization: `Bearer ${this.userToken}` },
+      headers: { Authorization: `Bearer ${userToken}` },
     });
   }
 
@@ -44,16 +60,27 @@ export class ArreglaloService {
   }
 
   deleteProfessional(): Observable<any> {
-    this.userToken = this.userData.getUserToken();
+    const userToken = this.getUserToken();
     return this.http.delete(`${this.apiUrl}professional/delete`, {
-      headers: { Authorization: `Bearer ${this.userToken}` },
+      headers: { Authorization: `Bearer ${userToken}` },
     });
   }
 
   updateProfesional(professional: IProfessional): Observable<any> {
-    this.userToken = this.userData.getUserToken();
+    const userToken = this.getUserToken();
     return this.http.put(`${this.apiUrl}professional/update`, professional, {
-      headers: { Authorization: `Bearer ${this.userToken}` },
+      headers: { Authorization: `Bearer ${userToken}` },
     });
+  }
+
+  getUserToken() {
+    const userLogged = localStorage.getItem("user")
+      ? JSON.parse(localStorage.getItem("user") || "")
+      : "";
+
+    if (userLogged) {
+      return userLogged.token;
+    }
+    return null;
   }
 }
