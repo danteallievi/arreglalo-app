@@ -50,9 +50,7 @@ export class DetailComponent implements OnInit {
           });
           this.isLoadingThePage = false;
         },
-        error: (err) => {
-          console.log(err);
-        },
+        error: () => {},
       });
     } else {
       this.storeService.visitedProfessional$.next(this.userIdToDisplay);
