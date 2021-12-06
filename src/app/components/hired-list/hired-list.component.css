@@ -1,0 +1,13 @@
+.content {
+  margin-top: 10vh;
+  overflow-y: hidden;
+  min-height: 90vh;
+}
+
+.cards-container {
+  @apply grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-9  justify-center items-center content-center p-3;
+}
+
+.cards-responsive {
+  @apply flex justify-center w-full;
+}
