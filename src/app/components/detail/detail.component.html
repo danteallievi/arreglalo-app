@@ -29,6 +29,16 @@
             alt="{{ myProfessional?.name }}"
           />
           <h2>{{ myProfessional?.name }} {{ myProfessional?.surname }}</h2>
+          <div
+            *ngIf="displayRateStars && isProfessionalHired"
+            class="stars-container"
+          >
+            <arreglalo-stars
+              [setRating]="myProfessional?.rate"
+              [max]="$any(5)"
+              (onRating)="handleRatingClick($event, myProfessional?.id)"
+            ></arreglalo-stars>
+          </div>
         </div>
 
         <div class="user-info ml-4">
