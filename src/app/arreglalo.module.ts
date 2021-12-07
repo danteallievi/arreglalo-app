@@ -2,6 +2,8 @@ import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { HttpClientModule } from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { ToastrModule } from "ngx-toastr";
 
 import { ArreglaloRoutingModule } from "./arreglalo-routing.module";
 import { AppComponent } from "./arreglalo.component";
@@ -17,8 +19,8 @@ import { PageNotFoundComponent } from "./components/page-not-found/page-not-foun
 import { RegisterProfessionalComponent } from "./pages/register/register-professional/register-professional.component";
 import { ProfileComponent } from "./pages/profile/profile.component";
 import { DetailComponent } from "./components/detail/detail.component";
-import { VisitedUserComponent } from './pages/visited-user/visited-user.component';
-import { HiredListComponent } from './components/hired-list/hired-list.component';
+import { VisitedUserComponent } from "./pages/visited-user/visited-user.component";
+import { HiredListComponent } from "./components/hired-list/hired-list.component";
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import { HiredListComponent } from './components/hired-list/hired-list.component
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
     ArreglaloRoutingModule,
     HttpClientModule,
     FormsModule,

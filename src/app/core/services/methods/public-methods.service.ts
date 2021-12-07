@@ -37,6 +37,10 @@ export class PublicMethodsService {
     return this.arreglaloService.hireProfessional(professionalToHireId);
   }
 
+  public fireSelectedProfessional(professionalToFireId: string) {
+    return this.arreglaloService.fireProfessional(professionalToFireId);
+  }
+
   public async removeUserToken() {
     await localStorage.removeItem("user");
     this.router.navigate(["/landing"]);

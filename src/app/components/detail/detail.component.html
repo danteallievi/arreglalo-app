@@ -41,28 +41,47 @@
           <p>Código postal: {{ myProfessional?.address.zip }}</p>
           <p>Zip code: {{ myProfessional?.address.zip }}</p>
         </div>
+
         <div *ngIf="loggedUserData.professional">
           <div class="buttons-container" *ngIf="displayLocalUser">
-            <arreglalo-button
+            <button
               (click)="toggleEditProfile()"
-              buttonColor="primary"
+              class="button-submit-primary"
               buttonText="Editar"
-              buttonSmall="small"
-            ></arreglalo-button>
+            >
+              Editar
+            </button>
 
             <button class="button-danger" (click)="deleteProfile()">
               Borrar perfil
             </button>
           </div>
         </div>
-        <div *ngIf="!loggedUserData.professional">
-          <div class="buttons-container" *ngIf="!displayLocalUser">
-            <arreglalo-button
-              buttonColor="primary"
-              buttonText="Contratar"
-              buttonSmall="small"
-              (click)="handleHireClick(myProfessional?.id)"
-            ></arreglalo-button>
+
+        <div *ngIf="!loggedUserData.professional && !displayLocalUser">
+          <ng-container *ngIf="isProfessionalHired; then fire; else hire">
+          </ng-container>
+
+          <div class="buttons-container">
+            <ng-template #hire>
+              <button
+                class="button-submit-primary"
+                (click)="handleHireClick(myProfessional?.id)"
+                [disabled]="disabledButton"
+              >
+                Contratar
+              </button>
+            </ng-template>
+
+            <ng-template #fire>
+              <button
+                class="button-danger"
+                (click)="handleFireClick(myProfessional?.id)"
+                [disabled]="disabledButton"
+              >
+                Terminar contrato
+              </button>
+            </ng-template>
           </div>
         </div>
       </div>
@@ -271,9 +290,12 @@
 
         <div class="buttons-container">
           <button
-            class="button-submit"
+            class="button-submit-primary"
             type="submit"
-            [disabled]="updateProfessionalProfileForm.invalid"
+            [disabled]="
+              updateProfessionalProfileForm.invalid ||
+              !updateProfessionalProfileForm.dirty
+            "
           >
             Guardar cambios
           </button>

@@ -93,6 +93,19 @@ export class ArreglaloService {
     );
   }
 
+  fireProfessional(professionalToFireId: string): Observable<any> {
+    const userToken = this.getUserToken();
+    return this.http.post(
+      `${this.apiUrl}client/eject/${professionalToFireId}`,
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${userToken}`,
+        },
+      }
+    );
+  }
+
   getUserToken() {
     const userLogged = localStorage.getItem("user")
       ? JSON.parse(localStorage.getItem("user") || "")
