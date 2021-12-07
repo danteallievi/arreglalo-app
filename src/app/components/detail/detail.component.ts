@@ -77,8 +77,6 @@ export class DetailComponent implements OnInit {
               city: [this.myProfessional.address.city, Validators.required],
               zipNumber: [this.myProfessional.address.zip, Validators.required],
             });
-
-            console.log(this.myProfessional.rate, "AAAAAAAAAAAa");
           },
           error: () => {
             this.router.navigate(["/not-found"]);
