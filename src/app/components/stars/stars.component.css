@@ -1,0 +1,12 @@
+.icon {
+  display: inline-block;
+  margin-right: 3px;
+  cursor: pointer;
+  color: rgb(134, 134, 134);
+}
+.icon:hover {
+  color: #ffff00;
+}
+.filled {
+  color: #ffff00;
+}
