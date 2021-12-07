@@ -41,11 +41,12 @@
 .buttons-container {
   margin-top: 1.5rem;
   display: flex;
+  align-items: center;
   flex-direction: column;
 }
 
 .button-danger {
-  @apply shadow-lg bg-red-700 mt-5;
+  @apply shadow-lg bg-red-600 mt-5;
   color: #fff;
   border-radius: 20px;
   font-weight: bold;
@@ -56,7 +57,11 @@
   height: 55px;
 }
 
-.button-submit-edit {
+.button-danger:disabled {
+  @apply bg-red-300;
+}
+
+.button-submit-primary {
   @apply shadow-lg bg-primary mt-5;
   color: #fff;
   border-radius: 20px;
@@ -68,12 +73,17 @@
   height: 55px;
 }
 
+.button-submit-primary:disabled {
+  background-color: rgba(124, 169, 161, 1);
+  cursor: initial;
+}
+
 .form-input-group {
   display: flex;
   flex-direction: column;
 }
 
-.form-container-edit {
+.form-container-primary {
   @apply w-full;
   display: flex;
   flex-direction: column;
