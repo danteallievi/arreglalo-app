@@ -11,6 +11,7 @@
       age="{{ calculateUserAge(professional.dateOfBirth) }}"
       image="{{ professional.avatar }}"
       calification="{{ professional.rate }}"
+      (click)="handleCardClick(professional.id)"
     >
     </arreglalo-card>
   </div>

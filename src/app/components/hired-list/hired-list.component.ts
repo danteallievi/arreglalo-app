@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { IProfessional } from "src/app/core/models/Professional";
 
 import { StoreService } from "src/app/core/services/store/store.service";
 
@@ -34,5 +33,9 @@ export class HiredListComponent implements OnInit {
       age -= 1;
     }
     return age;
+  }
+
+  handleCardClick(id: string) {
+    this.router.navigate(["/detail/", id]);
   }
 }
