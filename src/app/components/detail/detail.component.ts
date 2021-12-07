@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { FormGroup, FormBuilder, Validators, NgForm } from "@angular/forms";
 
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+
 import Swal from "sweetalert2";
 import jwtDecode from "jwt-decode";
 import { Subscription } from "rxjs";
@@ -20,6 +22,8 @@ import { IUserLogged } from "src/app/core/models/User";
 export class DetailComponent implements OnInit {
   @Input() displayLocalUser: boolean = true;
   @Input() userIdToDisplay: string = "";
+
+  faSpinner = faSpinner;
 
   updateProfessionalProfileForm?: FormGroup | any;
 
@@ -72,9 +76,11 @@ export class DetailComponent implements OnInit {
               city: [this.myProfessional.address.city, Validators.required],
               zipNumber: [this.myProfessional.address.zip, Validators.required],
             });
-            this.isLoadingThePage = false;
           },
           error: () => {},
+          complete: () => {
+            this.isLoadingThePage = false;
+          },
         });
     } else {
       this.visitedSubscription =
