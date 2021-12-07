@@ -9,3 +9,13 @@ export interface LocalUser {
   surname: string;
   email: string;
 }
+
+export interface IUserLogged {
+  id: string;
+  email: string;
+  name: string;
+  surname: string;
+  professional: boolean;
+  iat: number;
+  exp: number;
+}
