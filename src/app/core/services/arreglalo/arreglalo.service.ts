@@ -106,6 +106,19 @@ export class ArreglaloService {
     );
   }
 
+  rateProfessional(professionalId: string, rate: number): Observable<any> {
+    const userToken = this.getUserToken();
+    return this.http.patch(
+      `${this.apiUrl}professional/rate/${professionalId}`,
+      { rate },
+      {
+        headers: {
+          Authorization: `Bearer ${userToken}`,
+        },
+      }
+    );
+  }
+
   getUserToken() {
     const userLogged = localStorage.getItem("user")
       ? JSON.parse(localStorage.getItem("user") || "")

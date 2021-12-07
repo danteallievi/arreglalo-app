@@ -29,6 +29,7 @@ export class DetailComponent implements OnInit {
 
   isLoadingThePage: boolean = false;
   isEditingProfile: boolean = false;
+  displayRateStars: boolean = false;
 
   myProfessional?: any | IProfessional;
   loggedUserData!: IUserLogged;
@@ -52,7 +53,6 @@ export class DetailComponent implements OnInit {
 
   ngOnInit() {
     this.isLoadingThePage = true;
-
     const userLogged = localStorage.getItem("user")
       ? JSON.parse(localStorage.getItem("user") || "")
       : "";
@@ -64,6 +64,7 @@ export class DetailComponent implements OnInit {
       this.professionalSubscription =
         this.storeService.currentProfessionalSubject$.subscribe({
           next: (data) => {
+            this.isLoadingThePage = false;
             this.myProfessional = data;
             this.updateProfessionalProfileForm = this.formBuilder.group({
               skills: [this.myProfessional.skills, Validators.required],
@@ -76,21 +77,23 @@ export class DetailComponent implements OnInit {
               city: [this.myProfessional.address.city, Validators.required],
               zipNumber: [this.myProfessional.address.zip, Validators.required],
             });
+
+            console.log(this.myProfessional.rate, "AAAAAAAAAAAa");
           },
-          error: () => {},
-          complete: () => {
-            this.isLoadingThePage = false;
+          error: () => {
+            this.router.navigate(["/not-found"]);
           },
         });
     } else {
       this.visitedSubscription =
         this.storeService.visitedProfessionalSubject$.subscribe({
           next: (data) => {
-            this.myProfessional = data;
             this.isLoadingThePage = false;
+            this.myProfessional = data;
             this.isProfessionalHired = data.clients.includes(
               this.loggedUserData.id
             );
+            this.displayRateStars = true;
           },
           error: () => {
             this.router.navigate(["/not-found"]);
@@ -141,7 +144,12 @@ export class DetailComponent implements OnInit {
 
     this.publicMethods.updateCurrentProfesional(newProfessional).subscribe({
       complete: () => {
-        Swal.fire("Perfil editado correctamente.", "", "success");
+        Swal.fire({
+          title: "Perfil editado correctamente.",
+          icon: "success",
+          backdrop: `rgba(0,0,0,0.8)`,
+          confirmButtonColor: "#35615A",
+        });
         this.storeService.currentProfessional$.next({});
         this.router.navigate(["/detail"]);
         this.isEditingProfile = false;
@@ -173,13 +181,17 @@ export class DetailComponent implements OnInit {
       .hireSelectedProfessional(professionalToHireId)
       .subscribe({
         next: () => {
-          Swal.fire("Se ha contratado al profesional.", "", "success");
+          Swal.fire({
+            title: "Se ha contratado al profesional.",
+            icon: "success",
+            backdrop: `rgba(0,0,0,0.8)`,
+            confirmButtonColor: "#35615A",
+          });
         },
         error: () => {
           Swal.fire("Error contratando al profesional.", "", "error");
         },
         complete: () => {
-          Swal.fire("Se ha contratado al profesional.", "", "success");
           this.storeService.visitedProfessional$.next(this.userIdToDisplay);
           this.disabledButton = false;
         },
@@ -193,7 +205,12 @@ export class DetailComponent implements OnInit {
       .fireSelectedProfessional(professionalToFireId)
       .subscribe({
         next: () => {
-          Swal.fire("Se ha despedido al profesional.", "", "success");
+          Swal.fire({
+            title: "Se ha despedido al profesional.",
+            icon: "success",
+            backdrop: `rgba(0,0,0,0.8)`,
+            confirmButtonColor: "#35615A",
+          });
         },
         error: () => {
           Swal.fire("Error despidiendo al profesional.", "", "error");
@@ -201,6 +218,21 @@ export class DetailComponent implements OnInit {
         complete: () => {
           this.storeService.visitedProfessional$.next(this.userIdToDisplay);
           this.disabledButton = false;
+        },
+      });
+  }
+
+  handleRatingClick(numberOfRate: number, professionalToHireId: string) {
+    this.publicMethods
+      .rateSelectedProfessional(professionalToHireId, numberOfRate)
+      .subscribe({
+        next: () => {
+          Swal.fire({
+            title: "Se ha calificado al profesional.",
+            icon: "success",
+            backdrop: `rgba(0,0,0,0.8)`,
+            confirmButtonColor: "#35615A",
+          });
         },
       });
   }

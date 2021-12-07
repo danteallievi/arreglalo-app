@@ -26,6 +26,7 @@
     "@fontsource/roboto": "^4.5.1",
     "@fortawesome/angular-fontawesome": "^0.10.1",
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
+    "@fortawesome/free-regular-svg-icons": "^5.15.4",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@testing-library/angular": "^10.11.1",
     "@testing-library/dom": "^8.11.1",
