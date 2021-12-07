@@ -1,4 +1,26 @@
+.content {
+  min-height: 100vh;
+}
+
 .buttons-container {
   @apply pt-24 flex flex-col content-center justify-between;
   min-height: 50vh;
+}
+
+.button {
+  @apply shadow-lg bg-secondary;
+  color: #fff;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 18px;
+  width: 280px;
+  height: 55px;
+  line-height: 21px;
+  text-align: center;
+}
+
+.button:disabled {
+  @apply shadow-lg;
+  background-color: #e3ad66;
+  cursor: initial;
 }

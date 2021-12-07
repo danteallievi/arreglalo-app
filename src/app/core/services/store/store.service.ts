@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, switchMap } from "rxjs";
+import { BehaviorSubject, Subject, switchMap } from "rxjs";
 import { ArreglaloService } from "../arreglalo/arreglalo.service";
 
 @Injectable({
@@ -22,7 +22,7 @@ export class StoreService {
       switchMap(() => this.printHiredProfessionals())
     );
 
-  public visitedProfessional$ = new BehaviorSubject<string>("");
+  public visitedProfessional$ = new Subject<string>();
   public visitedProfessionalSubject$ = this.visitedProfessional$.pipe(
     switchMap((id: string) => this.printVisitedProfessional(id))
   );

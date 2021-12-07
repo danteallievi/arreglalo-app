@@ -1,8 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder, Validators, NgForm } from "@angular/forms";
 import { Router } from "@angular/router";
-import { IUser } from "src/app/core/models/User";
 
+import { ToastrService } from "ngx-toastr";
+
+import { IUser } from "src/app/core/models/User";
 import { PublicMethodsService } from "src/app/core/services/methods/public-methods.service";
 
 @Component({
@@ -17,7 +19,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private publicMethods: PublicMethodsService,
     private formBuilder: FormBuilder,
-    public router: Router
+    public router: Router,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -25,7 +28,6 @@ export class LoginComponent implements OnInit {
       email: ["", Validators.required],
       password: ["", Validators.required],
     });
-    this.checkFormChanges();
   }
 
   onSubmit(form: NgForm) {
@@ -36,18 +38,11 @@ export class LoginComponent implements OnInit {
         form.reset();
       },
       error: () => {
-        this.errorMessage = true;
+        this.toastr.error("", "Datos incorrectos.");
       },
-    });
-  }
-
-  checkFormChanges() {
-    this.loginForm.controls.email.valueChanges.subscribe(() => {
-      this.errorMessage = false;
-    });
-
-    this.loginForm.controls.password.valueChanges.subscribe(() => {
-      this.errorMessage = false;
+      complete: () => {
+        this.toastr.success("", "Bienvenido.");
+      },
     });
   }
 }

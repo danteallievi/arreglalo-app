@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
+import { ToastrService } from "ngx-toastr";
 import { PublicMethodsService } from "src/app/core/services/methods/public-methods.service";
 
 @Component({
@@ -14,7 +15,8 @@ export class RegisterProfessionalComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     public router: Router,
-    private publicMethods: PublicMethodsService
+    private publicMethods: PublicMethodsService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -51,6 +53,12 @@ export class RegisterProfessionalComponent implements OnInit {
       next: () => {
         this.router.navigate(["/login"]);
         this.professionalForm.reset();
+      },
+      error: () => {
+        this.toastr.error("", "Error registrando profesional.");
+      },
+      complete: () => {
+        this.toastr.success("", "Usuario registrado correctamente.");
       },
     });
   }
