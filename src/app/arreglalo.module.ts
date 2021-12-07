@@ -5,6 +5,8 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ToastrModule } from "ngx-toastr";
 
+import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
+
 import { ArreglaloRoutingModule } from "./arreglalo-routing.module";
 import { AppComponent } from "./arreglalo.component";
 import { ButtonComponent } from "./components/button/button.component";
@@ -48,6 +50,7 @@ import { HiredListComponent } from "./components/hired-list/hired-list.component
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    FontAwesomeModule,
   ],
   exports: [],
   providers: [],
