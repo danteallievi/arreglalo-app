@@ -26,13 +26,6 @@
   outline: none;
 }
 
-.wrong-data {
-  top: 20%;
-  left: 50%;
-  transform: translate(-50%, 0%);
-  position: absolute;
-}
-
 .wrong-input {
   top: 0%;
   transform: translate(0%, 0%);
