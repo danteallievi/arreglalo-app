@@ -23,6 +23,7 @@ import { ProfileComponent } from "./pages/profile/profile.component";
 import { DetailComponent } from "./components/detail/detail.component";
 import { VisitedUserComponent } from "./pages/visited-user/visited-user.component";
 import { HiredListComponent } from "./components/hired-list/hired-list.component";
+import { StarsComponent } from './components/stars/stars.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { HiredListComponent } from "./components/hired-list/hired-list.component
     DetailComponent,
     VisitedUserComponent,
     HiredListComponent,
+    StarsComponent,
   ],
   imports: [
     BrowserModule,
