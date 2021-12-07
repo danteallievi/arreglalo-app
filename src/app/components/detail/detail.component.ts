@@ -52,7 +52,6 @@ export class DetailComponent implements OnInit {
 
   ngOnInit() {
     this.isLoadingThePage = true;
-
     const userLogged = localStorage.getItem("user")
       ? JSON.parse(localStorage.getItem("user") || "")
       : "";
@@ -64,6 +63,7 @@ export class DetailComponent implements OnInit {
       this.professionalSubscription =
         this.storeService.currentProfessionalSubject$.subscribe({
           next: (data) => {
+            this.isLoadingThePage = false;
             this.myProfessional = data;
             this.updateProfessionalProfileForm = this.formBuilder.group({
               skills: [this.myProfessional.skills, Validators.required],
@@ -77,17 +77,16 @@ export class DetailComponent implements OnInit {
               zipNumber: [this.myProfessional.address.zip, Validators.required],
             });
           },
-          error: () => {},
-          complete: () => {
-            this.isLoadingThePage = false;
+          error: () => {
+            this.router.navigate(["/not-found"]);
           },
         });
     } else {
       this.visitedSubscription =
         this.storeService.visitedProfessionalSubject$.subscribe({
           next: (data) => {
-            this.myProfessional = data;
             this.isLoadingThePage = false;
+            this.myProfessional = data;
             this.isProfessionalHired = data.clients.includes(
               this.loggedUserData.id
             );
