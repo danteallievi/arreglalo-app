@@ -5,7 +5,7 @@ import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { HamburgerComponent } from "./hamburger/hamburger.component";
 import { NavbarComponent } from "./navbar.component";
 
-describe("Given the HamburgerComponent", () => {
+describe("Given the NavbarComponent", () => {
   let component: NavbarComponent;
   let fixture: ComponentFixture<NavbarComponent>;
 

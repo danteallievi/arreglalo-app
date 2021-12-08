@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { By } from "@angular/platform-browser";
 import { RouterTestingModule } from "@angular/router/testing";
 import { Observable } from "rxjs";
+import { ToastrService } from "ngx-toastr";
 
 import { PublicMethodsService } from "src/app/core/services/methods/public-methods.service";
 
@@ -21,6 +22,10 @@ describe("HamburgerComponent", () => {
         observer.next(component.router.navigate(["/login"]));
       });
   }
+  const ToastrServiceMock = {
+    success: () => {},
+    error: () => {},
+  };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -28,11 +33,14 @@ describe("HamburgerComponent", () => {
       providers: [
         RegisterProfessionalComponent,
         { provide: PublicMethodsService, useClass: PublicMethodsServiceMock },
+        { provide: ToastrService, useValue: ToastrServiceMock },
       ],
       imports: [
         FormsModule,
         ReactiveFormsModule,
-        RouterTestingModule,
+        RouterTestingModule.withRoutes([
+          { path: "signin", component: RegisterProfessionalComponent },
+        ]),
         HttpClientTestingModule,
       ],
     }).compileComponents();
@@ -88,9 +96,7 @@ describe("HamburgerComponent", () => {
     emailInput.dispatchEvent(new Event("input"));
     fixture.detectChanges();
 
-    fixture.whenStable().then(() => {
-      expect(component.professionalForm.value.email).toBe("test@test.com");
-    });
+    expect(component.professionalForm.value.email).toBe("test@test.com");
   });
 
   it("should have a enabled button when the user fills all the inputs", () => {
@@ -140,9 +146,7 @@ describe("HamburgerComponent", () => {
 
     fixture.detectChanges();
 
-    fixture.whenStable().then(() => {
-      expect(submitButton.nativeElement.disabled).toBeFalse();
-    });
+    expect(submitButton.nativeElement.disabled).toBeFalse();
   });
 
   it("should call the submit function when the user submit", () => {

@@ -48,7 +48,7 @@ export class DetailComponent implements OnInit {
     public router: Router,
     public publicMethods: PublicMethodsService,
     public formBuilder: FormBuilder,
-    private toastr: ToastrService
+    public toastr: ToastrService
   ) {}
 
   ngOnInit() {
@@ -77,8 +77,6 @@ export class DetailComponent implements OnInit {
               city: [this.myProfessional.address.city, Validators.required],
               zipNumber: [this.myProfessional.address.zip, Validators.required],
             });
-
-            console.log(this.myProfessional.rate, "AAAAAAAAAAAa");
           },
           error: () => {
             this.router.navigate(["/not-found"]);
@@ -143,7 +141,7 @@ export class DetailComponent implements OnInit {
     };
 
     this.publicMethods.updateCurrentProfesional(newProfessional).subscribe({
-      complete: () => {
+      next: () => {
         Swal.fire({
           title: "Perfil editado correctamente.",
           icon: "success",
@@ -187,13 +185,11 @@ export class DetailComponent implements OnInit {
             backdrop: `rgba(0,0,0,0.8)`,
             confirmButtonColor: "#35615A",
           });
+          this.storeService.visitedProfessional$.next(this.userIdToDisplay);
+          this.disabledButton = false;
         },
         error: () => {
           Swal.fire("Error contratando al profesional.", "", "error");
-        },
-        complete: () => {
-          this.storeService.visitedProfessional$.next(this.userIdToDisplay);
-          this.disabledButton = false;
         },
       });
   }
@@ -211,13 +207,11 @@ export class DetailComponent implements OnInit {
             backdrop: `rgba(0,0,0,0.8)`,
             confirmButtonColor: "#35615A",
           });
+          this.storeService.visitedProfessional$.next(this.userIdToDisplay);
+          this.disabledButton = false;
         },
         error: () => {
           Swal.fire("Error despidiendo al profesional.", "", "error");
-        },
-        complete: () => {
-          this.storeService.visitedProfessional$.next(this.userIdToDisplay);
-          this.disabledButton = false;
         },
       });
   }

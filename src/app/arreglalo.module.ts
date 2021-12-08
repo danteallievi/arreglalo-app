@@ -5,7 +5,12 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ToastrModule } from "ngx-toastr";
 
-import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
+import {
+  FaIconLibrary,
+  FontAwesomeModule,
+} from "@fortawesome/angular-fontawesome";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { faStar } from "@fortawesome/free-regular-svg-icons";
 
 import { ArreglaloRoutingModule } from "./arreglalo-routing.module";
 import { AppComponent } from "./arreglalo.component";
@@ -23,7 +28,7 @@ import { ProfileComponent } from "./pages/profile/profile.component";
 import { DetailComponent } from "./components/detail/detail.component";
 import { VisitedUserComponent } from "./pages/visited-user/visited-user.component";
 import { HiredListComponent } from "./components/hired-list/hired-list.component";
-import { StarsComponent } from './components/stars/stars.component';
+import { StarsComponent } from "./components/stars/stars.component";
 
 @NgModule({
   declarations: [
@@ -58,4 +63,8 @@ import { StarsComponent } from './components/stars/stars.component';
   providers: [],
   bootstrap: [AppComponent],
 })
-export class ArreglaloModule {}
+export class ArreglaloModule {
+  constructor(private library: FaIconLibrary) {
+    library.addIcons(faStar, faSpinner);
+  }
+}

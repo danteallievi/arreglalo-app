@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { By } from "@angular/platform-browser";
 import { Observable } from "rxjs";
+import { ToastrService } from "ngx-toastr";
 
 import { PublicMethodsService } from "src/app/core/services/methods/public-methods.service";
 
@@ -22,6 +23,11 @@ describe("LoginComponent", () => {
       });
   }
 
+  const ToastrServiceMock = {
+    success: () => {},
+    error: () => {},
+  };
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
@@ -29,12 +35,16 @@ describe("LoginComponent", () => {
         HttpClientTestingModule,
         FormsModule,
         ReactiveFormsModule,
+        RouterTestingModule.withRoutes([
+          { path: "list", component: LoginComponent },
+        ]),
       ],
       providers: [
         {
           provide: PublicMethodsService,
           useClass: PublicMethodsServiceMock,
         },
+        { provide: ToastrService, useValue: ToastrServiceMock },
       ],
       declarations: [LoginComponent],
     }).compileComponents();
@@ -74,9 +84,7 @@ describe("LoginComponent", () => {
 
     fixture.detectChanges();
 
-    fixture.whenStable().then(() => {
-      expect(submitButton.nativeElement.disabled).toBeFalse();
-    });
+    expect(submitButton.nativeElement.disabled).toBeFalse();
   });
 
   it("Should call the function when the user clicks the button", () => {
