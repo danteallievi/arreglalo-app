@@ -10,10 +10,10 @@
   [ngClass]="{ 'navbar-mobile-modal--hiden': isOpen }"
 >
   <ul class="navbar-mobile-modal navbar-mobile-modal__list">
-    <li>
+    <li (click)="toggleNavbar()">
       <a routerLink="/">Inicio</a>
     </li>
-    <li>
+    <li (click)="toggleNavbar()">
       <a routerLink="/profile">Perfil</a>
     </li>
     <li class="navbar-mobile-modal__list--logout" (click)="logOutUser()">

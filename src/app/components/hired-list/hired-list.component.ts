@@ -3,6 +3,8 @@ import { Router } from "@angular/router";
 
 import { StoreService } from "src/app/core/services/store/store.service";
 
+import { calculateUserAge } from "../../utils/calculateUserAge";
+
 @Component({
   selector: "arreglalo-hired-list",
   templateUrl: "./hired-list.component.html",
@@ -23,16 +25,8 @@ export class HiredListComponent implements OnInit {
     });
   }
 
-  calculateUserAge(yearOfBirth: Date) {
-    const today = new Date();
-    const birthDate = new Date(yearOfBirth);
-    const month = today.getMonth() - birthDate.getMonth();
-    let age = today.getFullYear() - birthDate.getFullYear();
-
-    if (month < 0 || (month === 0 && today.getDate() < birthDate.getDate())) {
-      age -= 1;
-    }
-    return age;
+  calculateUserAge(birthday: Date) {
+    return calculateUserAge(birthday);
   }
 
   handleCardClick(id: string) {
