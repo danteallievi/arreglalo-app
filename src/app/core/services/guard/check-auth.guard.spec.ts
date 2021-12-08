@@ -10,7 +10,14 @@ describe("CheckAuthGuard", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, RouterTestingModule],
+      imports: [
+        HttpClientTestingModule,
+        RouterTestingModule,
+        RouterTestingModule.withRoutes([
+          { path: "landing", component: CheckAuthGuard },
+          { path: "list", component: CheckAuthGuard },
+        ]),
+      ],
       providers: [CheckAuthGuard],
     });
     service = TestBed.inject(CheckAuthGuard);

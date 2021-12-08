@@ -15,7 +15,13 @@ describe("ProtectRouteGuard", () => {
     localStore = { token };
 
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, RouterTestingModule],
+      imports: [
+        HttpClientTestingModule,
+        RouterTestingModule,
+        RouterTestingModule.withRoutes([
+          { path: "landing", component: ProtectRouteGuard },
+        ]),
+      ],
       providers: [ProtectRouteGuard],
     });
     service = TestBed.inject(ProtectRouteGuard);

@@ -1,16 +1,17 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 
-import { StarsComponent } from './stars.component';
+import { StarsComponent } from "./stars.component";
 
-describe('StarsComponent', () => {
+describe("StarsComponent", () => {
   let component: StarsComponent;
   let fixture: ComponentFixture<StarsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ StarsComponent ]
-    })
-    .compileComponents();
+      imports: [FontAwesomeModule],
+      declarations: [StarsComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +20,14 @@ describe('StarsComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
+  });
+
+  it("should create", () => {
+    const spyFn = spyOn(component, "toggleRating").and.callThrough();
+    component.toggleRating(4);
+
+    expect(spyFn).toHaveBeenCalled();
   });
 });

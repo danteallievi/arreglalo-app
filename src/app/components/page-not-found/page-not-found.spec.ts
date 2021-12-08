@@ -4,6 +4,7 @@ import { HttpClientTestingModule } from "@angular/common/http/testing";
 
 import { NavbarComponent } from "../navbar/navbar.component";
 import { PageNotFoundComponent } from "./page-not-found.component";
+import { HamburgerComponent } from "../navbar/hamburger/hamburger.component";
 
 describe("HamburgerComponent", () => {
   let component: PageNotFoundComponent;
@@ -11,7 +12,11 @@ describe("HamburgerComponent", () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [PageNotFoundComponent, NavbarComponent],
+      declarations: [
+        PageNotFoundComponent,
+        NavbarComponent,
+        HamburgerComponent,
+      ],
       imports: [RouterTestingModule, HttpClientTestingModule],
     }).compileComponents();
   });

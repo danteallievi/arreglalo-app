@@ -2,10 +2,12 @@ import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { RouterTestingModule } from "@angular/router/testing";
 import { ArreglaloService } from "src/app/core/services/arreglalo/arreglalo.service";
+import { HamburgerComponent } from "../navbar/hamburger/hamburger.component";
+import { NavbarComponent } from "../navbar/navbar.component";
 
 import { ListComponent } from "./list.component";
 
-describe("Given the HamburgerComponent", () => {
+describe("Given the ListComponent", () => {
   let component: ListComponent;
   let fixture: ComponentFixture<ListComponent>;
 
@@ -13,7 +15,7 @@ describe("Given the HamburgerComponent", () => {
     await TestBed.configureTestingModule({
       imports: [HttpClientTestingModule, RouterTestingModule],
       providers: [ArreglaloService],
-      declarations: [ListComponent],
+      declarations: [ListComponent, NavbarComponent, HamburgerComponent],
     }).compileComponents();
   });
 
