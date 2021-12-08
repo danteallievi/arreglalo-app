@@ -28,28 +28,53 @@
             src="{{ myProfessional?.avatar }}"
             alt="{{ myProfessional?.name }}"
           />
-          <h2>{{ myProfessional?.name }} {{ myProfessional?.surname }}</h2>
-          <div
-            *ngIf="displayRateStars && isProfessionalHired"
-            class="stars-container"
-          >
-            <arreglalo-stars
-              [setRating]="myProfessional?.rate"
-              [max]="$any(5)"
-              (onRating)="handleRatingClick($event, myProfessional?.id)"
-            ></arreglalo-stars>
+          <div class="user-name">
+            <div class="user-detail-info">
+              <h2>{{ myProfessional?.name }}</h2>
+              <h2 class="mt-2">{{ myProfessional?.surname }}</h2>
+            </div>
+            <div
+              *ngIf="displayRateStars && isProfessionalHired"
+              class="stars-container"
+            >
+              <arreglalo-stars
+                [setRating]="myProfessional?.rate"
+                [max]="$any(5)"
+                (onRating)="handleRatingClick($event, myProfessional?.id)"
+              ></arreglalo-stars>
+            </div>
           </div>
         </div>
 
         <div class="user-info ml-4">
-          <p>Email: {{ myProfessional?.email }}</p>
-          <p>DNI: {{ myProfessional?.DNI }}</p>
-          <p>Telefono: {{ myProfessional?.phone }}</p>
-          <p>Dirección</p>
-          <p>Ciudad: {{ myProfessional?.address.city }}</p>
-          <p>Calle: {{ myProfessional?.address.street }}</p>
-          <p>Código postal: {{ myProfessional?.address.zip }}</p>
-          <p>Zip code: {{ myProfessional?.address.zip }}</p>
+          <p>
+            <span class="font-bold">Email:</span> {{ myProfessional?.email }}
+          </p>
+          <p>
+            <span class="font-bold">Teléfono:</span> {{ myProfessional?.phone }}
+          </p>
+          <div *ngIf="isProfessionalHired || displayLocalUser">
+            <p>
+              <span class="font-bold">Fecha de nacimiento:</span>
+              {{ myProfessional?.dateOfBirth }}
+            </p>
+            <p>
+              <span class="font-bold">DNI:</span>
+              {{ myProfessional?.DNI }}
+            </p>
+            <p>
+              <span class="font-bold">Ciudad:</span>
+              {{ myProfessional?.address.city }}
+            </p>
+            <p>
+              <span class="font-bold">Calle:</span>
+              {{ myProfessional?.address.street }}
+            </p>
+            <p>
+              <span class="font-bold">Código postal:</span>
+              {{ myProfessional?.address.zip }}
+            </p>
+          </div>
         </div>
 
         <div *ngIf="loggedUserData.professional">
