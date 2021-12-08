@@ -2,3 +2,17 @@
   @apply pt-24 flex flex-col content-center justify-between;
   min-height: 50vh;
 }
+
+@media (min-width: 768px) {
+  .content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  .buttons-container {
+    min-height: 0px;
+    justify-content: center;
+    padding: 0;
+  }
+}
