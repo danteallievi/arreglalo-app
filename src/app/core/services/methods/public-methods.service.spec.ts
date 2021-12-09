@@ -25,7 +25,9 @@ describe("PublicMethodsService", () => {
       password: "asd",
     };
     const spyFn = spyOn(service, "loginUser").and.callThrough();
+
     service.loginUser(userToLog);
+
     expect(spyFn).toHaveBeenCalledWith(userToLog);
   });
 
@@ -47,7 +49,9 @@ describe("PublicMethodsService", () => {
       avatar: "asd",
     };
     const spyFn = spyOn(service, "registerProfessional").and.callThrough();
+
     service.registerProfessional(professionalToRegister);
+
     expect(spyFn).toHaveBeenCalledWith(professionalToRegister);
   });
 
@@ -75,7 +79,9 @@ describe("PublicMethodsService", () => {
       avatar: "asd",
     };
     const spyFn = spyOn(service, "updateCurrentProfesional").and.callThrough();
+
     service.updateCurrentProfesional(professionalToUpdate);
+
     expect(spyFn).toHaveBeenCalledWith(professionalToUpdate);
   });
 });
